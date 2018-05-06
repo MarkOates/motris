@@ -52,7 +52,7 @@ void Motris::render_scene()
 }
 
 
-void Motris::process_input(int gamer_input_screen_button_type)
+void Motris::process_button_down_input(int gamer_input_screen_button_type)
 {
    switch(gamer_input_screen_button_type)
    {
@@ -66,6 +66,8 @@ void Motris::process_input(int gamer_input_screen_button_type)
       emit_event(GAME_EVENT_MOVE_FIGURE_RIGHT);
       break;
    case GAMER_BUTTON_DOWN:
+      emit_event(GAME_EVENT_ACCELERATE_DROP);
+      break;
    case GAMER_BUTTON_START:
    case GAMER_BUTTON_BACK:
    case GAMER_BUTTON_A:
@@ -73,6 +75,17 @@ void Motris::process_input(int gamer_input_screen_button_type)
    case GAMER_BUTTON_C:
       break;
    };
+}
+
+
+void Motris::process_button_up_input(int gamer_input_screen_button_type)
+{
+   switch(gamer_input_screen_button_type)
+   {
+   case GAMER_BUTTON_DOWN:
+      emit_event(GAME_EVENT_NORMALIZE_DROP_SPEED);
+      break;
+   }
 }
 
 
@@ -126,6 +139,13 @@ void Motris::process_event(ALLEGRO_EVENT &event)
          current_player_figure = figure_factory.make_random_shape();
          break;
       }
+   case GAME_EVENT_NORMALIZE_DROP_SPEED:
+      drop_rate_per_second = 1.0;
+      break;
+   case GAME_EVENT_ACCELERATE_DROP:
+      drop_rate_per_second = 1.0/10;
+      drop_rate_counter = drop_rate_per_second;
+      break;
    case ALLEGRO_EVENT_TIMER:
       update_scene();
       render_scene();
@@ -134,7 +154,10 @@ void Motris::process_event(ALLEGRO_EVENT &event)
       emit_event(EVENT_ABORT_PROGRAM);
       break;
    case GAMER_BUTTON_DOWN_EVENT:
-      process_input(event.user.data1);
+      process_button_down_input(event.user.data1);
+      break;
+   case GAMER_BUTTON_UP_EVENT:
+      process_button_up_input(event.user.data1);
       break;
    default:
       std::cout << "Unrecognized Event << " << std::endl;
