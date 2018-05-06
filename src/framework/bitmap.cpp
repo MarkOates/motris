@@ -12,7 +12,7 @@ Bitmap::Bitmap(ALLEGRO_BITMAP *al_bitmap, float x, float y)
    , opacity(1.0)
    , flags(0)
 {
-   this->bitmap(al_bitmap);
+   this->set_bitmap(al_bitmap);
 }
 
 
@@ -21,40 +21,14 @@ Bitmap::~Bitmap()
 }
 
 
-//Bitmap &opacity(float opacity)
-//{
-   //opacity(opacity); return *this;
-//}
-
-
-//Bitmap &save(std::string filename)
-//{
-   //al_save_bitmap(filename.c_str(), al_bitmap); return *this;
-//}
-
-
-Bitmap &Bitmap::reset()
+Bitmap &Bitmap::set_opacity(float opacity)
 {
-   placement.clear();
-   placement.align.x = 0.0;
-   placement.align.y = 0.0;
+   this->opacity = opacity;
    return *this;
 }
 
 
-Bitmap &Bitmap::set_flags(int flags)
-{
-   this->flags = flags; return *this;
-}
-
-
-ALLEGRO_BITMAP *Bitmap::get_bitmap()
-{
-   return al_bitmap;
-}
-
-
-Bitmap &Bitmap::bitmap(ALLEGRO_BITMAP *bitmap)
+Bitmap &Bitmap::set_bitmap(ALLEGRO_BITMAP *bitmap)
 {
    al_bitmap = bitmap;
    if (al_bitmap)
@@ -67,6 +41,28 @@ Bitmap &Bitmap::bitmap(ALLEGRO_BITMAP *bitmap)
       placement.w = 1;
       placement.h = 1;
    }
+   return *this;
+}
+
+
+Bitmap &Bitmap::set_flags(int flags)
+{
+   this->flags = flags;
+   return *this;
+}
+
+
+ALLEGRO_BITMAP *Bitmap::get_bitmap()
+{
+   return al_bitmap;
+}
+
+
+Bitmap &Bitmap::reset()
+{
+   placement.clear();
+   placement.align.x = 0.0;
+   placement.align.y = 0.0;
    return *this;
 }
 

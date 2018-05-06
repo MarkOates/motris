@@ -18,12 +18,13 @@ public:
    Bitmap(ALLEGRO_BITMAP *al_bitmap, float x=0, float y=0);
    ~Bitmap();
 
-   //inline Bitmap &opacity(float opacity);
-   //inline Bitmap &save(std::string filename);
-   Bitmap &reset();
+   Bitmap &set_bitmap(ALLEGRO_BITMAP *bitmap);
    Bitmap &set_flags(int flags);
+   Bitmap &set_opacity(float opacity);
+
    ALLEGRO_BITMAP *get_bitmap();
-   Bitmap &bitmap(ALLEGRO_BITMAP *bitmap);
+
+   Bitmap &reset();
    Bitmap &draw_raw();
    Bitmap &draw();
 };
