@@ -13,12 +13,12 @@ FigureFactory::~FigureFactory()
 }
 
 
-Figure FigureFactory::construct_figure(std::set<int> positions)
+Figure FigureFactory::construct_figure(std::vector<int> positions)
 {
-   std::set<vec2i> points;
+   std::vector<vec2i> points;
 
    for (auto &position : positions)
-      points.insert(vec2i(position % 2, position / 2));
+      points.push_back(vec2i(position % 2, position / 2));
 
    return Figure(points);
 }

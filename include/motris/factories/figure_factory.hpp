@@ -7,7 +7,7 @@
 class FigureFactory
 {
 private:
-   Figure construct_figure(std::set<int> positions);
+   Figure construct_figure(std::vector<int> positions);
 
 public:
    FigureFactory();

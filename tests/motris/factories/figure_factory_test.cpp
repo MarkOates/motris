@@ -9,7 +9,7 @@ TEST(FigureFactoryTest, make_I_shape__makes_the_expected_shape)
 {
    FigureFactory figure_factory;
 
-   std::set<vec2i> points = { {0, 1}, {1, 1}, {2, 1}, {3, 1} };
+   std::vector<vec2i> points = { {0, 1}, {1, 1}, {2, 1}, {3, 1} };
    Figure figure = figure_factory.make_I_shape();
 
    ASSERT_EQ(points, figure.points);

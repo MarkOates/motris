@@ -3,15 +3,15 @@
 
 #include <framework/bitmap.hpp>
 #include <framework/vec2i.hpp>
-#include <set>
+#include <vector>
 
 
 class Figure
 {
 public:
-   std::set<vec2i> points;
+   std::vector<vec2i> points;
 
-   Figure(std::set<vec2i> points);
+   Figure(std::vector<vec2i> points);
 
    void draw(Bitmap &block_bitmap, int tile_size);
    void move_x(int delta);
