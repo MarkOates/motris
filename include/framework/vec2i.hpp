@@ -14,6 +14,7 @@ public:
 
    std::string print() const;
 
+   vec2i operator=(const vec2i &other);
    bool operator==(const vec2i &other) const;
    bool operator!=(const vec2i &other) const;
    bool operator<(const vec2i &other) const;

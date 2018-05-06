@@ -25,6 +25,14 @@ std::string vec2i::print() const
 }
 
 
+vec2i vec2i::operator=(const vec2i &other)
+{
+   x = other.x;
+   y = other.y;
+   return (*this);
+}
+
+
 bool vec2i::operator==(const vec2i &other) const
 {
    return x == other.x && y == other.y;
