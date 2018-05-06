@@ -26,7 +26,7 @@ TEST_OBJECTS := $(TEST_SOURCES:tests/%.cpp=obj/tests/%.o)
 INDIVIDUAL_TEST_EXECUTABLES := $(TEST_SOURCES:tests/%.cpp=bin/tests/%)
 
 
-bin/motris: programs/motris.cpp $(OBJECTS)
+bin/main: programs/main.cpp $(OBJECTS)
 	g++ -std=gnu++11 $(OBJECTS) $< -o $@ $(ALLEGRO_LIBS) -L$(ALLEGRO_DIR)/lib $(OPENGL_LIB) -I$(ALLEGRO_DIR)/include -I./include
 
 
@@ -54,6 +54,6 @@ obj/tests/%.o: tests/%.cpp $(OBJECTS)
 
 clean:
 	-rm $(OBJECTS)
-	-rm bin/motris
+	-rm bin/main
 
 
