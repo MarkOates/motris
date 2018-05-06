@@ -76,14 +76,16 @@ void Motris::process_input(int gamer_input_screen_button_type)
 }
 
 
-void Motris::try_figure_movement(ALLEGRO_EVENT &event)
+void Motris::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 {
    Figure temp_figure = current_player_figure;
+   bool drop_event = false;
 
    switch(event.type)
    {
    case GAME_EVENT_FIGURE_DROP:
       temp_figure.move_y(1);
+      drop_event = true;
       break;
    case GAME_EVENT_ROTATE_FIGURE:
       temp_figure.rotate();
@@ -100,6 +102,9 @@ void Motris::try_figure_movement(ALLEGRO_EVENT &event)
 
    if (field.can_place_figure(temp_figure))
       current_player_figure = temp_figure;
+   else if (drop_event)
+      emit_event(GAME_EVENT_PLACE_FIGURE);
+
 }
 
 
@@ -111,8 +116,16 @@ void Motris::process_event(ALLEGRO_EVENT &event)
    case GAME_EVENT_ROTATE_FIGURE:
    case GAME_EVENT_MOVE_FIGURE_LEFT:
    case GAME_EVENT_MOVE_FIGURE_RIGHT:
-      try_figure_movement(event);
+      try_figure_movement_and_placement(event);
       break;
+   case GAME_EVENT_PLACE_FIGURE:
+      {
+         field.place_figure(current_player_figure);
+         int new_x = rand() % field.get_width();
+         FigureFactory figure_factory;
+         current_player_figure = figure_factory.make_random_shape();
+         break;
+      }
    case ALLEGRO_EVENT_TIMER:
       update_scene();
       render_scene();
