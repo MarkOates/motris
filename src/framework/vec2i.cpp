@@ -2,6 +2,8 @@
 
 #include <framework/vec2i.hpp>
 
+#include <sstream>
+
 
 vec2i::vec2i(int x, int y)
    : x(x)
@@ -12,6 +14,14 @@ vec2i::vec2i(int x, int y)
 
 vec2i::~vec2i()
 {
+}
+
+
+std::string vec2i::print()
+{
+   std::stringstream ss;
+   ss << "(" << x << ", " << y << ")";
+   return ss.str();
 }
 
 
@@ -29,7 +39,9 @@ bool vec2i::operator!=(const vec2i &other) const
 
 bool vec2i::operator<(const vec2i &other) const
 {
-   return x < other.x && y < other.y;
+   if (x < other.x) return true;
+   else if (x == other.x && y < other.y) return true;
+   return false;
 }
 
 
