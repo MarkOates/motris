@@ -5,10 +5,12 @@
 #include <vector>
 
 
+#define EMPTY_TILE 0
+
+
 class Field
 {
 private:
-   const int EMPTY_TILE = 0;
    int width;
    int height;
    std::vector<int> tiles;
