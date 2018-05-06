@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include <framework/bitmap.hpp>
+#include <framework/sprite_sheet.hpp>
 #include <framework/vec2i.hpp>
 #include <vector>
 
@@ -13,7 +13,7 @@ public:
 
    Figure(std::vector<vec2i> points);
 
-   void draw(Bitmap &block_bitmap, int tile_size);
+   void draw(SpriteSheet &sprite_sheet, int tile_size);
    void move_x(int delta);
    void move_y(int delta);
    void rotate();

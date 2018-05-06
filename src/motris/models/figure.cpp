@@ -2,14 +2,17 @@
 
 #include <motris/models/figure.hpp>
 
+#include <framework/bitmap.hpp>
+
 
 Figure::Figure(std::vector<vec2i> points)
    : points(points)
 {};
 
 
-void Figure::draw(Bitmap &block_bitmap, int tile_size)
+void Figure::draw(SpriteSheet &sprite_sheet, int tile_size)
 {
+   Bitmap block_bitmap(sprite_sheet.get_sprite(1));
    block_bitmap.placement.clear();
 
    for (auto &point : points)

@@ -1,6 +1,7 @@
 
 
 #include <motris/models/field.hpp>
+#include <framework/bitmap.hpp>
 
 
 Field::Field(int width, int height)
