@@ -30,7 +30,7 @@ bin/motris: programs/motris.cpp $(OBJECTS)
 	g++ -std=gnu++11 $(OBJECTS) $< -o $@ $(ALLEGRO_LIBS) -L$(ALLEGRO_DIR)/lib $(OPENGL_LIB) -I$(ALLEGRO_DIR)/include -I./include
 
 
-obj/%.o: src/%.cpp $(OBJECTS)
+obj/%.o: src/%.cpp
 	@mkdir -p $(@D)
 	g++ -c -std=gnu++11 $< -o $@ -I$(ALLEGRO_DIR)/include -I./include
 
