@@ -9,7 +9,8 @@
 
 enum game_events
 {
-   GAME_EVENT_ROTATE_FIGURE = ALLEGRO_GET_EVENT_TYPE('M','t','r','s'),
+   GAME_EVENT_FIGURE_DROP = ALLEGRO_GET_EVENT_TYPE('M','t','r','s'),
+   GAME_EVENT_ROTATE_FIGURE,
    GAME_EVENT_MOVE_FIGURE_LEFT,
    GAME_EVENT_MOVE_FIGURE_RIGHT
 };
@@ -20,6 +21,8 @@ class Motris : public Screen
 private:
    SpriteSheet piece_tiles_sprite_sheet;
    Bitmap bitmap;
+   float drop_rate_per_second;
+   float drop_rate_counter;
 
 public:
    Motris();

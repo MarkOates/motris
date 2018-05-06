@@ -9,12 +9,20 @@
 Motris::Motris()
    : piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , bitmap(piece_tiles_sprite_sheet.get_sprite(0), 40, 20)
+   , drop_rate_per_second(1.0)
+   , drop_rate_counter(0)
 {
 }
 
 
 void Motris::update_scene()
 {
+   drop_rate_counter += 1.0 / 60.0;
+   while (drop_rate_counter >= drop_rate_per_second)
+   {
+      drop_rate_counter -= drop_rate_per_second;
+      emit_event(GAME_EVENT_FIGURE_DROP);
+   }
 }
 
 
@@ -62,6 +70,9 @@ void Motris::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {
+   case GAME_EVENT_FIGURE_DROP:
+      current_player_figure.move_y(1);
+      break;
    case GAME_EVENT_ROTATE_FIGURE:
       current_player_figure.rotate();
       break;
