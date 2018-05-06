@@ -17,7 +17,7 @@ vec2i::~vec2i()
 }
 
 
-std::string vec2i::print()
+std::string vec2i::print() const
 {
    std::stringstream ss;
    ss << "(" << x << ", " << y << ")";
