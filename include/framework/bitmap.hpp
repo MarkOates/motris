@@ -6,7 +6,6 @@
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
-#include <framework/appearance2d.hpp>
 #include <framework/placement2d.hpp>
 #include <framework/useful.hpp>
 #include <iostream>
