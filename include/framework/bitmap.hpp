@@ -1,16 +1,14 @@
 #pragma once
 
 
-
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <framework/placement2d.hpp>
-#include <framework/useful.hpp>
+#include <framework/color.hpp>
 #include <iostream>
 #include <string>
-
 
 
 class Bitmap : public placement2d
@@ -27,7 +25,7 @@ public:
       , al_bitmap(al_bitmap)
       , color(color::white)
       , opacity(1.0)
-      , _flags(ALLEGRO_FLAGS_EMPTY)
+      , _flags(0)
    {
       this->bitmap(al_bitmap);
    }
@@ -67,6 +65,5 @@ public:
       return *this;
    }
 };
-
 
 
