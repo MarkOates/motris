@@ -18,7 +18,7 @@ Figure FigureFactory::construct_figure(std::set<int> positions)
    std::set<vec2i> points;
 
    for (auto &position : positions)
-      points.insert(vec2i(position / 2, position % 2));
+      points.insert(vec2i(position % 2, position / 2));
 
    return Figure(points);
 }
