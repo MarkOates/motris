@@ -37,6 +37,7 @@ Framework::Framework()
    al_register_event_source(master_event_queue, &event_source);
    al_register_event_source(master_event_queue, timer_event_source);
    al_register_event_source(master_event_queue, keyboard_event_source);
+   al_register_event_source(master_event_queue, al_get_display_event_source(display));
 }
 
 

@@ -28,6 +28,9 @@ void Motris::process_event(ALLEGRO_EVENT &event)
       update_scene();
       render_scene();
       break;
+   case ALLEGRO_EVENT_DISPLAY_CLOSE:
+      emit_event(EVENT_ABORT_PROGRAM);
+      break;
    default:
       std::cout << "Unrecognized Event << " << std::endl;
       break;
