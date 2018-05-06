@@ -20,13 +20,23 @@ void Figure::draw(Bitmap &block_bitmap, int tile_size)
 }
 
 
-
 void Figure::move_x(int delta)
 {
    std::vector<vec2i> moved_points = {};
 
    for (auto &point : points)
       moved_points.push_back(vec2i{ point.x + delta, point.y });
+
+   points = moved_points;
+}
+
+
+void Figure::move_y(int delta)
+{
+   std::vector<vec2i> moved_points = {};
+
+   for (auto &point : points)
+      moved_points.push_back(vec2i{ point.x, point.y + delta });
 
    points = moved_points;
 }

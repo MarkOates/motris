@@ -15,6 +15,7 @@ public:
 
    void draw(Bitmap &block_bitmap, int tile_size);
    void move_x(int delta);
+   void move_y(int delta);
    void rotate();
 };
 
