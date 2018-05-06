@@ -1,9 +1,9 @@
 
 
 #include <motris/screens/motris.hpp>
-#include <framework/color.hpp>
 
-#include <allegro5/allegro.h>
+#include <framework/screens/gamer_input_screen.hpp>
+#include <framework/color.hpp>
 
 
 Motris::Motris()
@@ -34,16 +34,52 @@ void Motris::render_scene()
 }
 
 
+void Motris::process_input(int gamer_input_screen_button_type)
+{
+   switch(gamer_input_screen_button_type)
+   {
+   case GAMER_BUTTON_UP:
+      emit_event(GAME_EVENT_ROTATE_FIGURE);
+      break;
+   case GAMER_BUTTON_LEFT:
+      emit_event(GAME_EVENT_MOVE_FIGURE_LEFT);
+      break;
+   case GAMER_BUTTON_RIGHT:
+      emit_event(GAME_EVENT_MOVE_FIGURE_RIGHT);
+      break;
+   case GAMER_BUTTON_DOWN:
+   case GAMER_BUTTON_START:
+   case GAMER_BUTTON_BACK:
+   case GAMER_BUTTON_A:
+   case GAMER_BUTTON_B:
+   case GAMER_BUTTON_C:
+      break;
+   };
+}
+
+
 void Motris::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {
+   case GAME_EVENT_ROTATE_FIGURE:
+      current_player_figure.rotate();
+      break;
+   case GAME_EVENT_MOVE_FIGURE_LEFT:
+      current_player_figure.move_x(-1);
+      break;
+   case GAME_EVENT_MOVE_FIGURE_RIGHT:
+      current_player_figure.move_x(1);
+      break;
    case ALLEGRO_EVENT_TIMER:
       update_scene();
       render_scene();
       break;
    case ALLEGRO_EVENT_DISPLAY_CLOSE:
       emit_event(EVENT_ABORT_PROGRAM);
+      break;
+   case GAMER_BUTTON_DOWN_EVENT:
+      process_input(event.user.data1);
       break;
    default:
       std::cout << "Unrecognized Event << " << std::endl;
