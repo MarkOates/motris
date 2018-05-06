@@ -24,3 +24,8 @@ obj/%.o: src/%.cpp $(OBJECTS)
 	g++ -c -std=gnu++11 $< -o $@ -I$(ALLEGRO_DIR)/include -I./include
 
 
+clean:
+	-rm $(OBJECTS)
+	-rm bin/motris
+
+
