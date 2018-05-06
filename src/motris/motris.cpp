@@ -17,6 +17,7 @@ void Motris::update_scene()
 
 void Motris::render_scene()
 {
+   al_clear_to_color(color::hex("4b3c37"));
 }
 
 
