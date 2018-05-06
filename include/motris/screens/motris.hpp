@@ -34,6 +34,8 @@ public:
    void update_scene();
    void render_scene();
    void process_input(int gamer_input_screen_button_type);
+
+   void try_figure_movement(ALLEGRO_EVENT &event);
    void process_event(ALLEGRO_EVENT &event) override;
 };
 
