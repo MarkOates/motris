@@ -9,11 +9,13 @@
 class Figure
 {
 public:
-   const std::set<vec2i> points;
+   std::set<vec2i> points;
 
    Figure(std::set<vec2i> points);
 
    void draw(Bitmap &block_bitmap, int tile_size);
+   void move_x(int delta);
+   void rotate();
 };
 
 
