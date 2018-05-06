@@ -49,3 +49,23 @@ void Field::place_figure(const Figure &figure)
 }
 
 
+void Field::draw(SpriteSheet &sprite_sheet, int tile_size) const
+{
+   Bitmap tile(sprite_sheet.get_sprite(0));
+
+   for (unsigned y=0; y<height; y++)
+      for (unsigned x=0; x<width; x++)
+      {
+      switch (get_tile(x, y))
+      {
+      case EMPTY_TILE:
+         break;
+      default:
+         tile.placement.position = vec2d(x * tile_size, y * tile_size);
+         tile.draw();
+         break;
+      }
+      }
+}
+
+

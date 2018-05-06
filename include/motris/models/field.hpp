@@ -2,6 +2,7 @@
 
 
 #include <motris/models/figure.hpp>
+#include <framework/sprite_sheet.hpp>
 #include <vector>
 
 
@@ -25,6 +26,7 @@ public:
 
    bool can_place_figure(const Figure &figure) const;
    void place_figure(const Figure &figure);
+   void draw(SpriteSheet &sprite_sheet, int tile_size) const;
 };
 
 
