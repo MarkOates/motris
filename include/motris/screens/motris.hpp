@@ -7,9 +7,12 @@
 #include <framework/sprite_sheet.hpp>
 
 
-#define GAME_EVENT_ROTATE_FIGURE     ALLEGRO_GET_EVENT_TYPE('R','t','F','g')
-#define GAME_EVENT_MOVE_FIGURE_LEFT  ALLEGRO_GET_EVENT_TYPE('M','v','F','R')
-#define GAME_EVENT_MOVE_FIGURE_RIGHT ALLEGRO_GET_EVENT_TYPE('M','v','F','L')
+enum game_events
+{
+   GAME_EVENT_ROTATE_FIGURE = ALLEGRO_GET_EVENT_TYPE('M','t','r','s'),
+   GAME_EVENT_MOVE_FIGURE_LEFT,
+   GAME_EVENT_MOVE_FIGURE_RIGHT
+};
 
 
 class Motris : public Screen
