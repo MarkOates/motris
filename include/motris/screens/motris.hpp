@@ -2,7 +2,6 @@
 
 
 #include <allegro5/allegro.h>
-#include <framework/bitmap.hpp>
 #include <framework/screen.hpp>
 #include <framework/sprite_sheet.hpp>
 
@@ -20,7 +19,6 @@ class Motris : public Screen
 {
 private:
    SpriteSheet piece_tiles_sprite_sheet;
-   Bitmap bitmap;
    float drop_rate_per_second;
    float drop_rate_counter;
 
