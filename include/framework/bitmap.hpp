@@ -5,9 +5,10 @@
 #include <framework/placement2d.hpp>
 
 
-class Bitmap : public placement2d
+class Bitmap
 {
 public:
+   placement2d placement;
    ALLEGRO_BITMAP *al_bitmap;
    ALLEGRO_COLOR color;
    float opacity;

@@ -6,7 +6,7 @@
 
 
 Bitmap::Bitmap(ALLEGRO_BITMAP *al_bitmap, float x, float y)
-   : placement2d(x, y, 0, 0, 0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
+   : placement(x, y, 0, 0, 0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
    , al_bitmap(al_bitmap)
    , color(color::white)
    , opacity(1.0)
@@ -35,9 +35,9 @@ Bitmap::~Bitmap()
 
 Bitmap &Bitmap::reset()
 {
-   placement2d::clear();
-   placement2d::align.x = 0.0;
-   placement2d::align.y = 0.0;
+   placement.clear();
+   placement.align.x = 0.0;
+   placement.align.y = 0.0;
    return *this;
 }
 
@@ -59,13 +59,13 @@ Bitmap &Bitmap::bitmap(ALLEGRO_BITMAP *bitmap)
    al_bitmap = bitmap;
    if (al_bitmap)
    {
-      w = al_get_bitmap_width(al_bitmap);
-      h = al_get_bitmap_height(al_bitmap);
+      placement.w = al_get_bitmap_width(al_bitmap);
+      placement.h = al_get_bitmap_height(al_bitmap);
    }
    else
    {
-      w = 1;
-      h = 1;
+      placement.w = 1;
+      placement.h = 1;
    }
    return *this;
 }
@@ -83,9 +83,9 @@ Bitmap &Bitmap::draw_raw()
 
 Bitmap &Bitmap::draw()
 {
-   start_transform();
+   placement.start_transform();
    draw_raw();
-   restore_transform();
+   placement.restore_transform();
    //draw_crosshair(x, y);
    return *this;
 }
