@@ -20,7 +20,7 @@ public:
    int _flags;
 
 public:
-   Bitmap(ALLEGRO_BITMAP *al_bitmap, float x, float y)
+   Bitmap(ALLEGRO_BITMAP *al_bitmap, float x=0, float y=0)
       : placement2d(x, y, 0, 0, 0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0)
       , al_bitmap(al_bitmap)
       , color(color::white)
@@ -31,6 +31,13 @@ public:
    }
    //inline Bitmap &opacity(float opacity) { opacity(opacity); return *this; }
    //inline Bitmap &save(std::string filename) { al_save_bitmap(filename.c_str(), al_bitmap); return *this; }
+   inline Bitmap &reset()
+   {
+      placement2d::clear();
+      placement2d::align.x = 0.0;
+      placement2d::align.y = 0.0;
+      return *this;
+   }
    inline Bitmap &flags(int flags) { _flags = flags; return *this; }
    ALLEGRO_BITMAP *get_bitmap() { return al_bitmap; }
    inline Bitmap &bitmap(ALLEGRO_BITMAP *bitmap)
