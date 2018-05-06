@@ -10,7 +10,7 @@ Bitmap::Bitmap(ALLEGRO_BITMAP *al_bitmap, float x, float y)
    , al_bitmap(al_bitmap)
    , color(color::white)
    , opacity(1.0)
-   , _flags(0)
+   , flags(0)
 {
    this->bitmap(al_bitmap);
 }
@@ -42,9 +42,9 @@ Bitmap &Bitmap::reset()
 }
 
 
-Bitmap &Bitmap::flags(int flags)
+Bitmap &Bitmap::set_flags(int flags)
 {
-   _flags = flags; return *this;
+   this->flags = flags; return *this;
 }
 
 
@@ -75,7 +75,7 @@ Bitmap &Bitmap::draw_raw()
 {
    if (al_bitmap)
    {
-      al_draw_tinted_bitmap(al_bitmap, ::color::color(color, opacity), 0, 0, _flags);
+      al_draw_tinted_bitmap(al_bitmap, ::color::color(color, opacity), 0, 0, flags);
    }
    return *this;
 }
