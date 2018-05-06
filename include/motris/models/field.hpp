@@ -19,6 +19,7 @@ public:
    void set_tile(int x, int y, int tile);
 
    int get_tile(int x, int y) const;
+   int get_width() const;
 
    bool can_place_figure(const Figure &figure) const;
    void place_figure(const Figure &figure);

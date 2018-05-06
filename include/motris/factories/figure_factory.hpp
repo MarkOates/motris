@@ -20,6 +20,8 @@ public:
    Figure make_L_shape();
    Figure make_J_shape();
    Figure make_O_shape();
+
+   Figure make_random_shape();
 };
 
 

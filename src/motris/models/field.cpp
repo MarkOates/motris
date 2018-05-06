@@ -22,6 +22,12 @@ int Field::get_tile(int x, int y) const
 }
 
 
+int Field::get_width() const
+{
+   return width;
+}
+
+
 bool Field::can_place_figure(const Figure &figure) const
 {
    for (auto &point : figure.points)

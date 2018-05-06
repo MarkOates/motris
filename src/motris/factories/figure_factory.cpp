@@ -66,3 +66,19 @@ Figure FigureFactory::make_O_shape()
 }
 
 
+Figure FigureFactory::make_random_shape()
+{
+   static const std::vector<Figure> possible_figures = {
+      make_I_shape(),
+      make_Z_shape(),
+      make_S_shape(),
+      make_T_shape(),
+      make_L_shape(),
+      make_J_shape(),
+      make_O_shape()
+   };
+
+   return possible_figures[rand() % possible_figures.size()];
+}
+
+
