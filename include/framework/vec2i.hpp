@@ -11,6 +11,7 @@ public:
 
    bool operator==(const vec2i &other) const;
    bool operator!=(const vec2i &other) const;
+   bool operator<(const vec2i &other) const;
 };
 
 

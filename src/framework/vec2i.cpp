@@ -27,3 +27,9 @@ bool vec2i::operator!=(const vec2i &other) const
 }
 
 
+bool vec2i::operator<(const vec2i &other) const
+{
+   return x < other.x && y < other.y;
+}
+
+
