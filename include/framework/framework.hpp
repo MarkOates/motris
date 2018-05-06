@@ -7,14 +7,14 @@
 
 
 
-
 extern ALLEGRO_EVENT_QUEUE *master_event_queue;
 #include <framework/screen.hpp>
 
 
-
 #define EVENT_ABORT_PROGRAM ALLEGRO_GET_EVENT_TYPE('A','B','R','T')
 
+
+class Screen;
 
 
 class Framework
@@ -31,6 +31,5 @@ public:
    void add_screen(Screen *screen);
    void loop();
 };
-
 
 

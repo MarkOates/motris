@@ -1,15 +1,17 @@
 
 
-#include <allegro5/allegro.h>
+#include <framework/framework.hpp>
+#include <motris/screens/motris.hpp>
 
 
 int main(int, char**)
 {
    al_init();
 
-   ALLEGRO_DISPLAY *display = al_create_display(320, 240);
-
-   sleep(3);
+   Framework framework;
+   Motris motris;
+   framework.add_screen(&motris);
+   framework.loop();
 
    return 0;
 }

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include <allegro5/allegro.h>
+#include <framework/framework.hpp>
+
+
 class Screen
 {
 public:
