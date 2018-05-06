@@ -21,6 +21,7 @@ public:
    int get_tile(int x, int y) const;
 
    bool can_place_figure(const Figure &figure) const;
+   void place_figure(const Figure &figure);
 };
 
 

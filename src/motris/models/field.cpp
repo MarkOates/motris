@@ -37,3 +37,9 @@ bool Field::can_place_figure(const Figure &figure) const
 }
 
 
+void Field::place_figure(const Figure &figure)
+{
+   for (auto &point : figure.points) set_tile(point.x, point.y, 1);
+}
+
+
