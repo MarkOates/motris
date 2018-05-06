@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include <motris/factories/figure_factory.hpp>
+#include <motris/models/field.hpp>
+#include <motris/models/figure.hpp>
 #include <allegro5/allegro.h>
 #include <framework/screen.hpp>
 #include <framework/sprite_sheet.hpp>
@@ -19,6 +22,9 @@ class Motris : public Screen
 {
 private:
    SpriteSheet piece_tiles_sprite_sheet;
+   FigureFactory figure_factory;
+   Field field;
+   Figure current_player_figure;
    float drop_rate_per_second;
    float drop_rate_counter;
 

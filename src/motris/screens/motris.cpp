@@ -4,10 +4,14 @@
 
 #include <framework/screens/gamer_input_screen.hpp>
 #include <framework/color.hpp>
+#include <framework/placement2d.hpp>
 
 
 Motris::Motris()
    : piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
+   , figure_factory()
+   , field(10, 20)
+   , current_player_figure(figure_factory.make_random_shape())
    , drop_rate_per_second(1.0)
    , drop_rate_counter(0)
 {
@@ -34,6 +38,15 @@ void Motris::render_scene()
    al_set_target_bitmap(backbuffer_bitmap);
    al_use_projection_transform(&trans);
    al_clear_to_color(color::hex("4b3c37"));
+
+   placement2d place;
+   place.position = vec2d(200, 30);
+   place.start_transform();
+
+   field.draw(piece_tiles_sprite_sheet, 16);
+   current_player_figure.draw(piece_tiles_sprite_sheet, 16);
+
+   place.restore_transform();
 
    al_flip_display();
 }
