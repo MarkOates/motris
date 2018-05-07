@@ -117,7 +117,6 @@ void Motris::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
       current_player_figure = temp_figure;
    else if (drop_event)
       emit_event(GAME_EVENT_PLACE_FIGURE);
-
 }
 
 
@@ -135,6 +134,7 @@ void Motris::process_event(ALLEGRO_EVENT &event)
       {
          field.place_figure(current_player_figure);
          int new_x = rand() % field.get_width();
+         field.remove_complete_lines();
          emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
          break;
       }
