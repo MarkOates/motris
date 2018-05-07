@@ -10,38 +10,15 @@ Figure::Figure(std::vector<vec2i> points)
 {};
 
 
-void Figure::draw(SpriteSheet &sprite_sheet, int tile_size)
-{
-   Bitmap block_bitmap(sprite_sheet.get_sprite(1));
-   block_bitmap.placement.clear();
-
-   for (auto &point : points)
-   {
-      block_bitmap.placement.position = vec2d(point.x * tile_size, point.y * tile_size);
-      block_bitmap.draw();
-   }
-}
-
-
 void Figure::move_x(int delta)
 {
-   std::vector<vec2i> moved_points = {};
-
-   for (auto &point : points)
-      moved_points.push_back(vec2i{ point.x + delta, point.y });
-
-   points = moved_points;
+   for (auto &point : points) point.x += delta;
 }
 
 
 void Figure::move_y(int delta)
 {
-   std::vector<vec2i> moved_points = {};
-
-   for (auto &point : points)
-      moved_points.push_back(vec2i{ point.x, point.y + delta });
-
-   points = moved_points;
+   for (auto &point : points) point.y += delta;
 }
 
 
@@ -59,6 +36,19 @@ void Figure::rotate()
    }
 
    points = rotated_points;
+}
+
+
+void Figure::draw(SpriteSheet &sprite_sheet, int tile_size)
+{
+   Bitmap block_bitmap(sprite_sheet.get_sprite(1));
+   block_bitmap.placement.clear();
+
+   for (auto &point : points)
+   {
+      block_bitmap.placement.position = vec2d(point.x * tile_size, point.y * tile_size);
+      block_bitmap.draw();
+   }
 }
 
 

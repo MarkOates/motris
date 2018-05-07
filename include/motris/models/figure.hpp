@@ -13,10 +13,11 @@ public:
 
    Figure(std::vector<vec2i> points);
 
-   void draw(SpriteSheet &sprite_sheet, int tile_size);
    void move_x(int delta);
    void move_y(int delta);
    void rotate();
+
+   void draw(SpriteSheet &sprite_sheet, int tile_size);
 };
 
 
