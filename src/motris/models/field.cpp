@@ -60,7 +60,6 @@ static int get_tile_type_sprite_index(int tile_type)
 }
 
 
-
 void Field::draw(SpriteSheet &sprite_sheet, int tile_size) const
 {
    Bitmap tile(sprite_sheet.get_sprite(0));
