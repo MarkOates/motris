@@ -131,15 +131,13 @@ void Motris::process_event(ALLEGRO_EVENT &event)
       try_figure_movement_and_placement(event);
       break;
    case GAME_EVENT_PLACE_FIGURE:
-      {
-         field.place_figure(current_player_figure);
-         int new_x = rand() % field.get_width();
-         field.remove_complete_lines();
-         emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
-         break;
-      }
+      field.place_figure(current_player_figure);
+      field.remove_complete_lines();
+      emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
+      break;
    case GAME_EVENT_SPAWN_NEW_FIGURE:
       current_player_figure = figure_factory.make_random_shape();
+      current_player_figure.move_x(4);
       break;
    case GAME_EVENT_NORMALIZE_DROP_SPEED:
       drop_rate_per_second = 1.0;
