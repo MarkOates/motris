@@ -50,6 +50,17 @@ void Field::place_figure(const Figure &figure)
 }
 
 
+static int get_tile_type_sprite_index(int tile_type)
+{
+   switch (tile_type)
+   {
+   case 0: return 8; break;
+   default: return 0; break;
+   }
+}
+
+
+
 void Field::draw(SpriteSheet &sprite_sheet, int tile_size) const
 {
    Bitmap tile(sprite_sheet.get_sprite(0));
@@ -57,15 +68,10 @@ void Field::draw(SpriteSheet &sprite_sheet, int tile_size) const
    for (unsigned y=0; y<height; y++)
       for (unsigned x=0; x<width; x++)
       {
-      switch (get_tile(x, y))
-      {
-      case EMPTY_TILE:
-         break;
-      default:
          tile.placement.position = vec2d(x * tile_size, y * tile_size);
+         int sprite_sheet_tile_index = get_tile_type_sprite_index(get_tile(x, y));
+         tile.set_bitmap(sprite_sheet.get_sprite(sprite_sheet_tile_index));
          tile.draw();
-         break;
-      }
       }
 }
 
