@@ -10,8 +10,9 @@ class Figure
 {
 public:
    std::vector<vec2i> points;
+   int color;
 
-   Figure(std::vector<vec2i> points);
+   Figure(std::vector<vec2i> points, int color);
 
    void move_x(int delta);
    void move_y(int delta);

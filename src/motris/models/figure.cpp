@@ -5,8 +5,9 @@
 #include <framework/bitmap.hpp>
 
 
-Figure::Figure(std::vector<vec2i> points)
+Figure::Figure(std::vector<vec2i> points, int color)
    : points(points)
+   , color(color)
 {};
 
 
@@ -41,7 +42,7 @@ void Figure::rotate()
 
 void Figure::draw(SpriteSheet &sprite_sheet, int tile_size)
 {
-   Bitmap block_bitmap(sprite_sheet.get_sprite(1));
+   Bitmap block_bitmap(sprite_sheet.get_sprite(color));
    block_bitmap.placement.clear();
 
    for (auto &point : points)

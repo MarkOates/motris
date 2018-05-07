@@ -46,7 +46,7 @@ bool Field::can_place_figure(const Figure &figure) const
 
 void Field::place_figure(const Figure &figure)
 {
-   for (auto &point : figure.points) set_tile(point.x, point.y, 1);
+   for (auto &point : figure.points) set_tile(point.x, point.y, figure.color);
 }
 
 
@@ -55,7 +55,7 @@ static int get_tile_type_sprite_index(int tile_type)
    switch (tile_type)
    {
    case 0: return 8; break;
-   default: return 0; break;
+   default: return tile_type;
    }
 }
 
