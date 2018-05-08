@@ -42,13 +42,13 @@ void Figure::rotate()
 
 void Figure::draw(SpriteSheet &sprite_sheet, int tile_size)
 {
-   Bitmap block_bitmap(sprite_sheet.get_sprite(color));
-   block_bitmap.placement.clear();
+   Bitmap tile(sprite_sheet.get_sprite(color));
+   tile.placement.clear();
 
    for (auto &point : points)
    {
-      block_bitmap.placement.position = vec2d(point.x * tile_size, point.y * tile_size);
-      block_bitmap.draw();
+      tile.placement.position = vec2d(point.x * tile_size, point.y * tile_size);
+      tile.draw();
    }
 }
 
