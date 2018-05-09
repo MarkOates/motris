@@ -3,6 +3,7 @@
 #include <framework/framework.hpp>
 
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_ttf.h>
 
 
 ALLEGRO_EVENT_QUEUE *master_event_queue = nullptr;
@@ -19,6 +20,8 @@ Framework::Framework()
    al_init();
 
    if (!al_init_image_addon()) throw std::runtime_error("al_init_image_addon() failed");
+   if (!al_init_font_addon()) throw std::runtime_error("al_init_font_addon() failed");
+   if (!al_init_ttf_addon()) throw std::runtime_error("al_init_ttf_addon() failed");
 
    ALLEGRO_PATH *resource_path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
    al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
