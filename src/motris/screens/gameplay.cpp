@@ -1,13 +1,13 @@
 
 
-#include <motris/screens/motris.hpp>
+#include <motris/screens/gameplay.hpp>
 
 #include <framework/screens/gamer_input_screen.hpp>
 #include <framework/color.hpp>
 #include <framework/placement2d.hpp>
 
 
-Motris::Motris()
+Gameplay::Gameplay()
    : piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , figure_factory()
    , field(10, 20)
@@ -18,7 +18,7 @@ Motris::Motris()
 }
 
 
-void Motris::update_scene()
+void Gameplay::update_scene()
 {
    drop_rate_counter += 1.0 / 60.0;
    while (drop_rate_counter >= drop_rate_per_second)
@@ -29,7 +29,7 @@ void Motris::update_scene()
 }
 
 
-void Motris::render_scene()
+void Gameplay::render_scene()
 {
    ALLEGRO_BITMAP *backbuffer_bitmap = al_get_backbuffer(al_get_current_display());
    ALLEGRO_TRANSFORM trans;
@@ -52,7 +52,7 @@ void Motris::render_scene()
 }
 
 
-void Motris::process_button_down_input(int gamer_input_screen_button_type)
+void Gameplay::process_button_down_input(int gamer_input_screen_button_type)
 {
    switch(gamer_input_screen_button_type)
    {
@@ -78,7 +78,7 @@ void Motris::process_button_down_input(int gamer_input_screen_button_type)
 }
 
 
-void Motris::process_button_up_input(int gamer_input_screen_button_type)
+void Gameplay::process_button_up_input(int gamer_input_screen_button_type)
 {
    switch(gamer_input_screen_button_type)
    {
@@ -89,7 +89,7 @@ void Motris::process_button_up_input(int gamer_input_screen_button_type)
 }
 
 
-void Motris::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
+void Gameplay::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 {
    Figure temp_figure = current_player_figure;
    bool drop_event = false;
@@ -120,7 +120,7 @@ void Motris::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 }
 
 
-void Motris::process_event(ALLEGRO_EVENT &event)
+void Gameplay::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {

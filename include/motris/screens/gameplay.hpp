@@ -22,7 +22,7 @@ enum game_events
 };
 
 
-class Motris : public Screen
+class Gameplay : public Screen
 {
 private:
    SpriteSheet piece_tiles_sprite_sheet;
@@ -33,7 +33,7 @@ private:
    float drop_rate_counter;
 
 public:
-   Motris();
+   Gameplay();
 
    void update_scene();
    void render_scene();
