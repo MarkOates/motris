@@ -8,7 +8,9 @@
 
 Motris::Motris(Framework &framework)
    : framework(framework)
+   , gamer_input_screen()
 {
+   framework.add_screen(&gamer_input_screen);
    emit_event(GAME_EVENT_START_GAMEPLAY);
 }
 
