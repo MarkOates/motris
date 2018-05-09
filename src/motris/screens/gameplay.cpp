@@ -5,6 +5,7 @@
 #include <framework/screens/gamer_input_screen.hpp>
 #include <framework/color.hpp>
 #include <framework/placement2d.hpp>
+#include <motris/events.hpp>
 
 
 Gameplay::Gameplay()
