@@ -32,24 +32,15 @@ void Gameplay::update_scene()
 
 void Gameplay::render_scene()
 {
-   ALLEGRO_BITMAP *backbuffer_bitmap = al_get_backbuffer(al_get_current_display());
-   ALLEGRO_TRANSFORM trans;
-   al_identity_transform(&trans);
-   al_orthographic_transform(&trans, 0, 0, -1.0, al_get_bitmap_width(backbuffer_bitmap)/2.5, al_get_bitmap_height(backbuffer_bitmap)/2.5, 1.0);
-   al_set_target_bitmap(backbuffer_bitmap);
-   al_use_projection_transform(&trans);
-   al_clear_to_color(color::hex("4b3c37"));
-
    placement2d place;
-   place.position = vec2d(200, 30);
+   place.scale = vec2d(2.65, 2.65);
+   place.position = vec2d(670, 70);
    place.start_transform();
 
    field.draw(piece_tiles_sprite_sheet, 16);
    current_player_figure.draw(piece_tiles_sprite_sheet, 16);
 
    place.restore_transform();
-
-   al_flip_display();
 }
 
 

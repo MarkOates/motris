@@ -4,6 +4,7 @@
 
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_ttf.h>
+#include <framework/color.hpp>
 
 
 ALLEGRO_EVENT_QUEUE *master_event_queue = nullptr;
@@ -57,7 +58,9 @@ void Framework::loop()
    while (event.type != EVENT_ABORT_PROGRAM)
    {
       al_wait_for_event(master_event_queue, &event);
+      if (event.type == ALLEGRO_EVENT_TIMER && event.any.source == timer_event_source) al_clear_to_color(color::hex("4b3c37"));
       for (auto &screen : screens) screen->process_event(event);
+      if (event.type == ALLEGRO_EVENT_TIMER && event.any.source == timer_event_source) al_flip_display();
    }
 }
 
