@@ -14,6 +14,12 @@
 class Gameplay : public Screen
 {
 private:
+   enum state_t
+   {
+      STATE_UNDEF = 0,
+      STATE_GAMEPLAY,
+   };
+
    SpriteSheet piece_tiles_sprite_sheet;
    FigureFactory figure_factory;
    Field field;
@@ -28,6 +34,8 @@ private:
    int score;
    int lines_cleared;
    int pieces_since_last_longbar;
+
+   state_t state;
 
 public:
    Gameplay();

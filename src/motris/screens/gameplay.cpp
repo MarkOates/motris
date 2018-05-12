@@ -22,14 +22,9 @@ Gameplay::Gameplay()
    , score(0)
    , lines_cleared(0)
    , pieces_since_last_longbar(0)
+   , state(STATE_UNDEF)
 {
-   timer.start();
-   emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
-   emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
-   emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
-   emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
-   emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
-   emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
+   emit_event(GAME_EVENT_START_GAMEPLAY);
 }
 
 
@@ -180,7 +175,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       drop_rate_counter = drop_rate_per_second;
       break;
    case ALLEGRO_EVENT_TIMER:
-      update_scene();
+      if (state == Gameplay::STATE_GAMEPLAY) update_scene();
       render_scene();
       break;
    case GAMER_BUTTON_DOWN_EVENT:
@@ -188,6 +183,23 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       break;
    case GAMER_BUTTON_UP_EVENT:
       process_button_up_input(event.user.data1);
+      break;
+   case GAME_EVENT_START_GAMEPLAY:
+      state = Gameplay::STATE_GAMEPLAY;
+      timer = Timer();
+      timer.start();
+      level = 0;
+      score = 0;
+      lines_cleared = 0;
+      pieces_since_last_longbar = 0;
+      next_figure = figure_factory.make_random_shape();
+
+      emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
+      emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
+      emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
+      emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
+      emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
+      emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
       break;
    default:
       std::cout << "Unrecognized Event << " << std::endl;
