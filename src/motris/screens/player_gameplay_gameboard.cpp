@@ -51,19 +51,23 @@ void PlayerGameplayGameboard::update_scene()
 
 void PlayerGameplayGameboard::render_scene()
 {
-   placement2d place;
-   place.scale = vec2d(2.65, 2.65);
-   place.position = vec2d(670, 70);
-   place.start_transform();
+   placement2d gameboard_placement;
+      gameboard_placement.position = vec2d(670, 70);
+      gameboard_placement.start_transform();
 
-   field.draw(piece_tiles_sprite_sheet, 16);
-   current_player_figure.draw(piece_tiles_sprite_sheet, 16, true);
+      placement2d field_placement;
+         field_placement.scale = vec2d(2.65, 2.65);
+         field_placement.position = vec2d(0, 0);
+         field_placement.start_transform();
 
-   place.restore_transform();
+         field.draw(piece_tiles_sprite_sheet, 16);
+         current_player_figure.draw(piece_tiles_sprite_sheet, 16, true);
 
-   gameplay_hud->render_scene();
+      field_placement.restore_transform();
+
+      gameplay_hud->render_scene();
+   gameboard_placement.restore_transform();
 }
-
 
 void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_button_type)
 {

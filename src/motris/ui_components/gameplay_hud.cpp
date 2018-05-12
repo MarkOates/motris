@@ -7,8 +7,10 @@
 #include <motris/events.hpp>
 
 
-static int const LEFT_COLUMN_X = 550;
-static int const RIGHT_COLUMN_X = 1200;
+static int const GAMEPLAY_X = 670;
+static int const GAMEPLAY_Y = 70;
+static int const LEFT_COLUMN_X = (550 - GAMEPLAY_X);
+static int const RIGHT_COLUMN_X = (1200 - GAMEPLAY_X);
 
 
 GameplayHUD::GameplayHUD()
@@ -18,13 +20,13 @@ GameplayHUD::GameplayHUD()
    , large_font(al_load_font("data/fonts/Questrial-Regular.ttf", 140, 0))
    , sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , next_figure_field(4, 5)
-   , level(label_font, large_font, "LEVEL", "13", LEFT_COLUMN_X, 200, 1.0)
-   , score(label_font, value_font, "SCORE", "6273459", LEFT_COLUMN_X, 500, 1.0)
-   , lines_cleared(label_font, value_font, "LINES CLEARED", "129", LEFT_COLUMN_X, 650, 1.0)
-   , next(label_font, value_font, "NEXT", "", RIGHT_COLUMN_X, 200, 0.0)
-   , since_last_longbar(label_font, value_font, "SINCE LAST LONGBAR", "29", RIGHT_COLUMN_X, 500, 0.0)
-   , time(label_font, value_font, small_value_font, "TIME", "-", RIGHT_COLUMN_X, 650, 0.0)
-   , notification(value_font, "", 880, 500, color::white)
+   , level(label_font, large_font, "LEVEL", "13", LEFT_COLUMN_X, 200 - GAMEPLAY_Y, 1.0)
+   , score(label_font, value_font, "SCORE", "6273459", LEFT_COLUMN_X, 500 - GAMEPLAY_Y, 1.0)
+   , lines_cleared(label_font, value_font, "LINES CLEARED", "129", LEFT_COLUMN_X, 650 - GAMEPLAY_Y, 1.0)
+   , next(label_font, value_font, "NEXT", "", RIGHT_COLUMN_X, 200 - GAMEPLAY_Y, 0.0)
+   , since_last_longbar(label_font, value_font, "SINCE LAST LONGBAR", "29", RIGHT_COLUMN_X, 500 - GAMEPLAY_Y, 0.0)
+   , time(label_font, value_font, small_value_font, "TIME", "-", RIGHT_COLUMN_X, 650 - GAMEPLAY_Y, 0.0)
+   , notification(value_font, "", 880 - GAMEPLAY_X, 500 - GAMEPLAY_Y, color::white)
 {
    if (!label_font) throw std::runtime_error("label_font not loaded");
    if (!value_font) throw std::runtime_error("value_font not loaded");
@@ -51,7 +53,7 @@ void GameplayHUD::render_scene()
    lines_cleared.draw();
    score.draw();
    next.draw();
-   placement2d next_figure_placement(RIGHT_COLUMN_X, 250, 0, 0);
+   placement2d next_figure_placement(RIGHT_COLUMN_X, 250 - GAMEPLAY_Y, 0, 0);
    next_figure_placement.scale = vec2d(3, 3);
    next_figure_placement.start_transform();
    next_figure_field.draw(sprite_sheet, 12);
