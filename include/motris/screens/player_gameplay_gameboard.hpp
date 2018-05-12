@@ -4,6 +4,7 @@
 #include <motris/factories/figure_factory.hpp>
 #include <motris/models/field.hpp>
 #include <motris/models/figure.hpp>
+#include <motris/models/player.hpp>
 #include <motris/models/timer.hpp>
 #include <motris/strategies/scoring_strategy.hpp>
 #include <motris/ui_components/gameplay_hud_interface.hpp>
@@ -23,6 +24,7 @@ private:
       STATE_LOST,
    };
 
+   Player &player;
    placement2d placement;
    GameplayHUDInterface *gameplay_hud;
    SpriteSheet piece_tiles_sprite_sheet;
@@ -43,7 +45,7 @@ private:
    state_t state;
 
 public:
-   PlayerGameplayGameboard(float x=1792/2, float y=1008/2, float scale=1.0);
+   PlayerGameplayGameboard(Player &player, float x=1792/2, float y=1008/2, float scale=1.0);
    void set_position(float x, float y, float scale);
 
    void update_scene();
