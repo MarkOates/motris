@@ -13,6 +13,7 @@ class GameplayHUD : public Screen
 private:
    ALLEGRO_FONT *label_font;
    ALLEGRO_FONT *value_font;
+   ALLEGRO_FONT *small_value_font;
    ALLEGRO_FONT *large_font;
 
    SpriteSheet sprite_sheet;
