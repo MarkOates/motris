@@ -132,10 +132,17 @@ void Gameplay::place_and_respond_to_figure()
 {
    field.place_figure(current_player_figure);
    int num_lines_removed = field.remove_complete_lines();
+   int lines_cleared_before = lines_cleared;
    int points_awarded = scoring_strategy.get_points_awarded(level, num_lines_removed);
 
    lines_cleared += num_lines_removed;
    score += points_awarded;
+
+   if ((lines_cleared_before + num_lines_removed) / 10 > (lines_cleared_before / 10))
+   {
+      level++;
+      emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
+   }
 
    emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
    emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
