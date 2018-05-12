@@ -35,6 +35,13 @@ void Field::clear()
 }
 
 
+bool Field::will_place_above_the_top(const Figure &figure) const
+{
+   for (auto &point : figure.points) if (point.y < 0) return true;
+   return false;
+}
+
+
 bool Field::can_place_figure(const Figure &figure) const
 {
    for (auto &point : figure.points)

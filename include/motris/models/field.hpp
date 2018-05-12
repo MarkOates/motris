@@ -26,6 +26,7 @@ public:
 
    void clear();
 
+   bool will_place_above_the_top(const Figure &figure) const;
    bool can_place_figure(const Figure &figure) const;
    void place_figure(const Figure &figure);
    void draw(SpriteSheet &sprite_sheet, int tile_size) const;
