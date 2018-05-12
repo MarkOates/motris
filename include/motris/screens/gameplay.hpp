@@ -4,6 +4,7 @@
 #include <motris/factories/figure_factory.hpp>
 #include <motris/models/field.hpp>
 #include <motris/models/figure.hpp>
+#include <motris/models/timer.hpp>
 #include <motris/strategies/scoring_strategy.hpp>
 #include <allegro5/allegro.h>
 #include <framework/screen.hpp>
@@ -21,6 +22,7 @@ private:
    float drop_rate_counter;
    ScoringStrategy scoring_strategy;
 
+   Timer timer;
    int level;
    int score;
    int lines_cleared;

@@ -16,13 +16,16 @@ Gameplay::Gameplay()
    , drop_rate_per_second(1.0)
    , drop_rate_counter(0)
    , scoring_strategy()
+   , timer()
    , level(1)
    , score(0)
    , lines_cleared(0)
 {
+   timer.start();
    emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
    emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
    emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
+   emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
 }
 
 
@@ -34,6 +37,8 @@ void Gameplay::update_scene()
       drop_rate_counter -= drop_rate_per_second;
       emit_event(GAME_EVENT_FIGURE_DROP);
    }
+
+   emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
 }
 
 
