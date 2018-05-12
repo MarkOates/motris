@@ -5,12 +5,13 @@
 #include <motris/ui_components/labeled_text.hpp>
 #include <motris/models/field.hpp>
 #include <allegro5/allegro_font.h>
-#include <framework/screen.hpp>
 
 
-class GameplayHUD : public Screen
+class GameplayHUD
 {
 private:
+   friend class Gameplay;
+
    ALLEGRO_FONT *label_font;
    ALLEGRO_FONT *value_font;
    ALLEGRO_FONT *small_value_font;
@@ -36,7 +37,6 @@ public:
    void render_scene();
 
    void set_next_figure(Figure::figure_t type);
-   void process_event(ALLEGRO_EVENT &event) override;
 };
 
 

@@ -9,7 +9,9 @@
 
 
 Gameplay::Gameplay()
-   : piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
+   : Screen()
+   , gameplay_hud()
+   , piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , figure_factory()
    , field(10, 20)
    , current_player_figure(figure_factory.make_random_shape())
@@ -30,14 +32,19 @@ Gameplay::Gameplay()
 
 void Gameplay::update_scene()
 {
-   drop_rate_counter += 1.0 / 60.0;
-   while (drop_rate_counter >= drop_rate_per_second)
+   if (state == Gameplay::STATE_GAMEPLAY)
    {
-      drop_rate_counter -= drop_rate_per_second;
-      emit_event(GAME_EVENT_FIGURE_DROP);
+      drop_rate_counter += 1.0 / 60.0;
+      while (drop_rate_counter >= drop_rate_per_second)
+      {
+         drop_rate_counter -= drop_rate_per_second;
+         emit_event(GAME_EVENT_FIGURE_DROP);
+      }
+
+      emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
    }
 
-   emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
+   gameplay_hud.update_scene();
 }
 
 
@@ -52,6 +59,8 @@ void Gameplay::render_scene()
    current_player_figure.draw(piece_tiles_sprite_sheet, 16, true);
 
    place.restore_transform();
+
+   gameplay_hud.render_scene();
 }
 
 
@@ -182,7 +191,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       drop_rate_counter = drop_rate_per_second;
       break;
    case ALLEGRO_EVENT_TIMER:
-      if (state == Gameplay::STATE_GAMEPLAY) update_scene();
+      update_scene();
       render_scene();
       break;
    case GAMER_BUTTON_DOWN_EVENT:
@@ -214,6 +223,30 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       state = Gameplay::STATE_LOST;
       emit_event(GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER);
       timer.stop();
+      break;
+   case GAME_EVENT_HUD_UPDATE_SCORE:
+      gameplay_hud.score.set_value(event.user.data1);
+      break;
+   case GAME_EVENT_HUD_UPDATE_LEVEL:
+      gameplay_hud.level.set_value(event.user.data1);
+      break;
+   case GAME_EVENT_HUD_UPDATE_LINES_CLEARED:
+      gameplay_hud.lines_cleared.set_value(event.user.data1);
+      break;
+   case GAME_EVENT_HUD_UPDATE_TIME:
+      gameplay_hud.time.set_value(event.user.data1);
+      break;
+   case GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR:
+      gameplay_hud.since_last_longbar.set_value(event.user.data1);
+      break;
+   case GAME_EVENT_HUD_UPDATE_NEXT_FIGURE:
+      gameplay_hud.set_next_figure(static_cast<Figure::figure_t>(event.user.data1));
+      break;
+   case GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER:
+      gameplay_hud.notification.set_text("Game Over").set_placement_size_to_text();
+      break;
+   case GAME_EVENT_HUD_CLEAR_NOTIFICATION:
+      gameplay_hud.notification.set_text("");
       break;
    default:
       //std::cout << "Unrecognized Event << " << std::endl;

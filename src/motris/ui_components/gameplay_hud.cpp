@@ -1,14 +1,13 @@
 
 
-#include <motris/screens/gameplay_hud.hpp>
+#include <motris/ui_components/gameplay_hud.hpp>
 
 #include <motris/factories/figure_factory.hpp>
 #include <framework/color.hpp>
-#include <motris/events.hpp>
 
 
-#define LEFT_COLUMN_X 550
-#define RIGHT_COLUMN_X 1200
+static int const LEFT_COLUMN_X = 550;
+static int const RIGHT_COLUMN_X = 1200;
 
 
 GameplayHUD::GameplayHUD()
@@ -70,45 +69,6 @@ void GameplayHUD::set_next_figure(Figure::figure_t type)
    constructed_figure.move_x(1);
    next_figure_field.clear();
    next_figure_field.place_figure(constructed_figure);
-}
-
-
-void GameplayHUD::process_event(ALLEGRO_EVENT &event)
-{
-   switch(event.type)
-   {
-   case ALLEGRO_EVENT_TIMER:
-      update_scene();
-      render_scene();
-      break;
-   case GAME_EVENT_HUD_UPDATE_SCORE:
-      score.set_value(event.user.data1);
-      break;
-   case GAME_EVENT_HUD_UPDATE_LEVEL:
-      level.set_value(event.user.data1);
-      break;
-   case GAME_EVENT_HUD_UPDATE_LINES_CLEARED:
-      lines_cleared.set_value(event.user.data1);
-      break;
-   case GAME_EVENT_HUD_UPDATE_TIME:
-      time.set_value(event.user.data1);
-      break;
-   case GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR:
-      since_last_longbar.set_value(event.user.data1);
-      break;
-   case GAME_EVENT_HUD_UPDATE_NEXT_FIGURE:
-      set_next_figure(static_cast<Figure::figure_t>(event.user.data1));
-      break;
-   case GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER:
-      notification.set_text("Game Over").set_placement_size_to_text();
-      break;
-   case GAME_EVENT_HUD_CLEAR_NOTIFICATION:
-      notification.set_text("");
-      break;
-   default:
-      //std::cout << "GameplayHUD Unrecognized Event << " << std::endl;
-      break;
-   }
 }
 
 

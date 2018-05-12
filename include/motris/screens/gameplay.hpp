@@ -6,6 +6,7 @@
 #include <motris/models/figure.hpp>
 #include <motris/models/timer.hpp>
 #include <motris/strategies/scoring_strategy.hpp>
+#include <motris/ui_components/gameplay_hud.hpp>
 #include <allegro5/allegro.h>
 #include <framework/screen.hpp>
 #include <framework/sprite_sheet.hpp>
@@ -21,6 +22,7 @@ private:
       STATE_LOST,
    };
 
+   GameplayHUD gameplay_hud;
    SpriteSheet piece_tiles_sprite_sheet;
    FigureFactory figure_factory;
    Field field;
