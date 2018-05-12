@@ -2,12 +2,14 @@
 
 
 #include <motris/models/figure.hpp>
+#include <framework/random_number_generator.hpp>
 
 
 class FigureFactory
 {
 private:
    Figure construct_figure(std::vector<int> positions, int color, Figure::figure_t type);
+   RandomNumberGenerator random_number_generator;
 
 public:
    FigureFactory();

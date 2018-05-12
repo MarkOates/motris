@@ -4,6 +4,7 @@
 
 
 FigureFactory::FigureFactory()
+   : random_number_generator()
 {
 }
 
@@ -78,7 +79,7 @@ Figure FigureFactory::make_random_shape()
       make_O_shape()
    };
 
-   return possible_figures[rand() % possible_figures.size()];
+   return possible_figures[random_number_generator.get_random_int(0, possible_figures.size()-1)];
 }
 
 
