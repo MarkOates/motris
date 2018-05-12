@@ -3,6 +3,7 @@
 #include <motris/ui_components/labeled_text.hpp>
 
 #include <framework/color.hpp>
+#include <sstream>
 
 
 LabeledText::LabeledText(ALLEGRO_FONT *label_font, ALLEGRO_FONT *value_font, std::string label_text, std::string value_text, float x, float y, float align_x)
@@ -29,6 +30,15 @@ Text &LabeledText::get_label()
 Text &LabeledText::get_value()
 {
    return value;
+}
+
+
+void LabeledText::set_value(int value)
+{
+   std::stringstream ss;
+   ss << value;
+   this->value.set_text(ss.str());
+   this->value.set_placement_size_to_text();
 }
 
 

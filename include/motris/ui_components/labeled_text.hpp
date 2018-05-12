@@ -19,6 +19,8 @@ public:
    Text &get_label();
    Text &get_value();
 
+   void set_value(int value);
+
    void draw();
 };
 
