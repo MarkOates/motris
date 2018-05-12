@@ -75,9 +75,9 @@ void Field::draw(SpriteSheet &sprite_sheet, int tile_size) const
 }
 
 
-std::vector<vec2i> Field::remove_complete_lines()
+int Field::remove_complete_lines()
 {
-   std::vector<vec2i> results;
+   int num_lines_removed = 0;
 
    int k = height-1;
    for (unsigned y=height-1; y>0; y--)
@@ -88,10 +88,17 @@ std::vector<vec2i> Field::remove_complete_lines()
          if (get_tile(x, y) != 0) count++;
          set_tile(x, k, get_tile(x, y));
       }
-      if (count < width) k--;
+      if (count < width)
+      {
+         k--;
+      }
+      else
+      {
+         num_lines_removed++;
+      }
    }
 
-   return results;
+   return num_lines_removed;
 }
 
 

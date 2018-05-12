@@ -27,7 +27,7 @@ public:
    bool can_place_figure(const Figure &figure) const;
    void place_figure(const Figure &figure);
    void draw(SpriteSheet &sprite_sheet, int tile_size) const;
-   std::vector<vec2i> remove_complete_lines();
+   int remove_complete_lines();
 };
 
 
