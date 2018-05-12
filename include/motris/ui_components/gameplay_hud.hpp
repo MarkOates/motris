@@ -1,13 +1,14 @@
 #pragma once
 
 
+#include <motris/ui_components/gameplay_hud_interface.hpp>
 #include <motris/ui_components/labeled_timer.hpp>
 #include <motris/ui_components/labeled_text.hpp>
 #include <motris/models/field.hpp>
 #include <allegro5/allegro_font.h>
 
 
-class GameplayHUD
+class GameplayHUD : public GameplayHUDInterface
 {
 private:
    friend class PlayerGameplayGameboard;
@@ -33,10 +34,11 @@ public:
    GameplayHUD();
    ~GameplayHUD();
 
-   void update_scene();
-   void render_scene();
-
    void set_next_figure(Figure::figure_t type);
+
+   void update_scene() override;
+   void render_scene() override;
+   void process_event(ALLEGRO_EVENT &event) override;
 };
 
 
