@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <motris/ui_components/labeled_timer.hpp>
 #include <motris/ui_components/labeled_text.hpp>
 #include <motris/models/field.hpp>
 #include <allegro5/allegro_font.h>
@@ -22,7 +23,7 @@ private:
    LabeledText lines_cleared;
    LabeledText next;
    LabeledText since_last_longbar;
-   LabeledText time;
+   LabeledTimer time;
 
    Text notification;
 
