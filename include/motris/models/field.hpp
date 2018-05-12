@@ -24,6 +24,8 @@ public:
    int get_tile(int x, int y) const;
    int get_width() const;
 
+   void clear();
+
    bool can_place_figure(const Figure &figure) const;
    void place_figure(const Figure &figure);
    void draw(SpriteSheet &sprite_sheet, int tile_size) const;

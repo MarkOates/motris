@@ -29,6 +29,12 @@ int Field::get_width() const
 }
 
 
+void Field::clear()
+{
+   for (auto &tile : tiles) tile = 0;
+}
+
+
 bool Field::can_place_figure(const Figure &figure) const
 {
    for (auto &point : figure.points)
