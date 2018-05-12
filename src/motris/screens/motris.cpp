@@ -12,7 +12,7 @@ Motris::Motris(Framework &framework)
    , gamer_input_screen()
 {
    framework.add_screen(&gamer_input_screen);
-   emit_event(GAME_EVENT_GOTO_GAMEPLAY_SCREEN);
+   emit_event(GAME_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN);
 }
 
 
@@ -20,7 +20,7 @@ void Motris::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {
-   case GAME_EVENT_GOTO_GAMEPLAY_SCREEN:
+   case GAME_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN:
       framework.add_screen(new Gameplay);
       framework.add_screen(new GameplayHUD);
       break;
