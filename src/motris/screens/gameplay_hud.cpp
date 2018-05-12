@@ -96,10 +96,11 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
    case GAME_EVENT_HUD_UPDATE_NEXT_FIGURE:
       set_next_figure(static_cast<Figure::figure_t>(event.user.data1));
       break;
-   case GAME_EVENT_PLAYER_LOST:
-      notification
-         .set_text("Game Over")
-         .set_placement_size_to_text();
+   case GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER:
+      notification.set_text("Game Over").set_placement_size_to_text();
+      break;
+   case GAME_EVENT_HUD_CLEAR_NOTIFICATION:
+      notification.set_text("");
       break;
    default:
       //std::cout << "GameplayHUD Unrecognized Event << " << std::endl;

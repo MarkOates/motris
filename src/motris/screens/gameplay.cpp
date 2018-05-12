@@ -199,7 +199,6 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       score = 0;
       lines_cleared = 0;
       pieces_since_last_longbar = 0;
-      next_figure = figure_factory.make_random_shape();
 
       emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
       emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
@@ -207,9 +206,13 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
       emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
       emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
+      emit_event(GAME_EVENT_HUD_CLEAR_NOTIFICATION);
+
+      emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
       break;
    case GAME_EVENT_PLAYER_LOST:
       state = Gameplay::STATE_LOST;
+      emit_event(GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER);
       timer.stop();
       break;
    default:
