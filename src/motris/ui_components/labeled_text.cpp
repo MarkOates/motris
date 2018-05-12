@@ -21,18 +21,6 @@ LabeledText::~LabeledText()
 }
 
 
-Text &LabeledText::get_label()
-{
-   return label;
-}
-
-
-Text &LabeledText::get_value()
-{
-   return value;
-}
-
-
 void LabeledText::set_value(int value)
 {
    std::stringstream ss;
