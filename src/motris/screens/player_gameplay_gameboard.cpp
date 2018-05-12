@@ -1,6 +1,6 @@
 
 
-#include <motris/screens/gameplay.hpp>
+#include <motris/screens/player_gameplay_gameboard.hpp>
 
 #include <framework/screens/gamer_input_screen.hpp>
 #include <framework/color.hpp>
@@ -8,7 +8,7 @@
 #include <motris/events.hpp>
 
 
-Gameplay::Gameplay()
+PlayerGameplayGameboard::PlayerGameplayGameboard()
    : Screen()
    , gameplay_hud()
    , piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
@@ -30,9 +30,9 @@ Gameplay::Gameplay()
 }
 
 
-void Gameplay::update_scene()
+void PlayerGameplayGameboard::update_scene()
 {
-   if (state == Gameplay::STATE_GAMEPLAY)
+   if (state == PlayerGameplayGameboard::STATE_GAMEPLAY)
    {
       drop_rate_counter += 1.0 / 60.0;
       while (drop_rate_counter >= drop_rate_per_second)
@@ -48,7 +48,7 @@ void Gameplay::update_scene()
 }
 
 
-void Gameplay::render_scene()
+void PlayerGameplayGameboard::render_scene()
 {
    placement2d place;
    place.scale = vec2d(2.65, 2.65);
@@ -64,7 +64,7 @@ void Gameplay::render_scene()
 }
 
 
-void Gameplay::process_button_down_input(int gamer_input_screen_button_type)
+void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_button_type)
 {
    switch(gamer_input_screen_button_type)
    {
@@ -90,7 +90,7 @@ void Gameplay::process_button_down_input(int gamer_input_screen_button_type)
 }
 
 
-void Gameplay::process_button_up_input(int gamer_input_screen_button_type)
+void PlayerGameplayGameboard::process_button_up_input(int gamer_input_screen_button_type)
 {
    switch(gamer_input_screen_button_type)
    {
@@ -101,7 +101,7 @@ void Gameplay::process_button_up_input(int gamer_input_screen_button_type)
 }
 
 
-void Gameplay::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
+void PlayerGameplayGameboard::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 {
    Figure temp_figure = current_player_figure;
    bool drop_event = false;
@@ -132,7 +132,7 @@ void Gameplay::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 }
 
 
-void Gameplay::place_and_respond_to_figure()
+void PlayerGameplayGameboard::place_and_respond_to_figure()
 {
    if (field.will_place_above_the_top(current_player_figure))
    {
@@ -160,7 +160,7 @@ void Gameplay::place_and_respond_to_figure()
 }
 
 
-void Gameplay::process_event(ALLEGRO_EVENT &event)
+void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {
@@ -201,7 +201,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       process_button_up_input(event.user.data1);
       break;
    case GAME_EVENT_START_GAMEPLAY:
-      state = Gameplay::STATE_GAMEPLAY;
+      state = PlayerGameplayGameboard::STATE_GAMEPLAY;
       timer = Timer();
       timer.start();
       level = 0;
@@ -220,7 +220,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
       break;
    case GAME_EVENT_PLAYER_LOST:
-      state = Gameplay::STATE_LOST;
+      state = PlayerGameplayGameboard::STATE_LOST;
       emit_event(GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER);
       timer.stop();
       break;

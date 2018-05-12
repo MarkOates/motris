@@ -12,7 +12,7 @@
 #include <framework/sprite_sheet.hpp>
 
 
-class Gameplay : public Screen
+class PlayerGameplayGameboard : public Screen
 {
 private:
    enum state_t
@@ -41,7 +41,7 @@ private:
    state_t state;
 
 public:
-   Gameplay();
+   PlayerGameplayGameboard();
 
    void update_scene();
    void render_scene();

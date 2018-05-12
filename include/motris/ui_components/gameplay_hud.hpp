@@ -10,7 +10,7 @@
 class GameplayHUD
 {
 private:
-   friend class Gameplay;
+   friend class PlayerGameplayGameboard;
 
    ALLEGRO_FONT *label_font;
    ALLEGRO_FONT *value_font;
