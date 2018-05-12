@@ -43,7 +43,8 @@ private:
    state_t state;
 
 public:
-   PlayerGameplayGameboard();
+   PlayerGameplayGameboard(float x=1792/2, float y=1008/2, float scale=1.0);
+   void set_position(float x, float y, float scale);
 
    void update_scene();
    void render_scene();

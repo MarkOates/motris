@@ -9,9 +9,9 @@
 #include <motris/events.hpp>
 
 
-PlayerGameplayGameboard::PlayerGameplayGameboard()
+PlayerGameplayGameboard::PlayerGameplayGameboard(float x, float y, float scale)
    : Screen()
-   , placement(1792/2, 1008/2, 0, 0)
+   , placement(x, y, 0, 0, 0, scale, scale, 0.5, 0.5, 0, 0)
    , gameplay_hud(new GameplayHUD)
    , piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , figure_factory()
@@ -29,6 +29,13 @@ PlayerGameplayGameboard::PlayerGameplayGameboard()
    , state(STATE_UNDEF)
 {
    emit_event(GAME_EVENT_START_GAMEPLAY);
+}
+
+
+void PlayerGameplayGameboard::set_position(float x, float y, float scale)
+{
+   placement.position = vec2d(x, y);
+   placement.scale = vec2d(scale, scale);
 }
 
 
