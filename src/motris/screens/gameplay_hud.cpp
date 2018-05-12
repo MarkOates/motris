@@ -68,6 +68,9 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
    case GAME_EVENT_HUD_UPDATE_TIME:
       time.set_value(event.user.data1);
       break;
+   case GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR:
+      since_last_longbar.set_value(event.user.data1);
+      break;
    default:
       //std::cout << "GameplayHUD Unrecognized Event << " << std::endl;
       break;

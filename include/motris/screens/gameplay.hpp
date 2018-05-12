@@ -26,6 +26,7 @@ private:
    int level;
    int score;
    int lines_cleared;
+   int pieces_since_last_longbar;
 
 public:
    Gameplay();

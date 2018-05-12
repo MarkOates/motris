@@ -20,12 +20,14 @@ Gameplay::Gameplay()
    , level(1)
    , score(0)
    , lines_cleared(0)
+   , pieces_since_last_longbar(0)
 {
    timer.start();
    emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
    emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
    emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
    emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
+   emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
 }
 
 
@@ -155,6 +157,9 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
    case GAME_EVENT_SPAWN_NEW_FIGURE:
       current_player_figure = figure_factory.make_random_shape();
       current_player_figure.move_x(4);
+      if (current_player_figure.is_type(Figure::FIGURE_SHAPE_I)) pieces_since_last_longbar=0;
+      else pieces_since_last_longbar++;
+      emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
       break;
    case GAME_EVENT_NORMALIZE_DROP_SPEED:
       drop_rate_per_second = 1.0;
