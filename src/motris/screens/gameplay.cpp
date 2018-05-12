@@ -13,6 +13,7 @@ Gameplay::Gameplay()
    , figure_factory()
    , field(10, 20)
    , current_player_figure(figure_factory.make_random_shape())
+   , next_figure(figure_factory.make_random_shape())
    , drop_rate_per_second(1.0)
    , drop_rate_counter(0)
    , scoring_strategy()
@@ -28,6 +29,7 @@ Gameplay::Gameplay()
    emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
    emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
    emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
+   emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
 }
 
 
@@ -155,11 +157,13 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       place_and_respond_to_figure();
       break;
    case GAME_EVENT_SPAWN_NEW_FIGURE:
-      current_player_figure = figure_factory.make_random_shape();
+      current_player_figure = next_figure;
+      next_figure = figure_factory.make_random_shape();
       current_player_figure.move_x(4);
       if (current_player_figure.is_type(Figure::FIGURE_SHAPE_I)) pieces_since_last_longbar=0;
       else pieces_since_last_longbar++;
       emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
+      emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
       break;
    case GAME_EVENT_NORMALIZE_DROP_SPEED:
       drop_rate_per_second = 1.0;

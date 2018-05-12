@@ -18,6 +18,7 @@ private:
    FigureFactory figure_factory;
    Field field;
    Figure current_player_figure;
+   Figure next_figure;
    float drop_rate_per_second;
    float drop_rate_counter;
    ScoringStrategy scoring_strategy;
