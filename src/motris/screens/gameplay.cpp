@@ -216,7 +216,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       timer.stop();
       break;
    default:
-      std::cout << "Unrecognized Event << " << std::endl;
+      //std::cout << "Unrecognized Event << " << std::endl;
       break;
    }
 }
