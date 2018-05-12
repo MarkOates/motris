@@ -31,7 +31,7 @@ int ScoringStrategy::get_points_awarded(int level, int num_lines_removed)
       break;
    }
 
-   return base_points_awarded * (level + 1);
+   return base_points_awarded * (level);
 }
 
 
