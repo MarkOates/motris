@@ -2,6 +2,8 @@
 
 #include <motris/screens/gameplay_hud.hpp>
 
+#include <motris/events.hpp>
+
 
 #define LEFT_COLUMN_X 550
 #define RIGHT_COLUMN_X 1200
@@ -54,8 +56,14 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
       update_scene();
       render_scene();
       break;
+   case GAME_EVENT_HUD_UPDATE_SCORE:
+      score.set_value(event.user.data1);
+      break;
+   case GAME_EVENT_HUD_UPDATE_LEVEL:
+      level.set_value(event.user.data1);
+      break;
    default:
-      std::cout << "GameplayHUD Unrecognized Event << " << std::endl;
+      //std::cout << "GameplayHUD Unrecognized Event << " << std::endl;
       break;
    }
 }

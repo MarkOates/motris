@@ -15,7 +15,12 @@ Gameplay::Gameplay()
    , current_player_figure(figure_factory.make_random_shape())
    , drop_rate_per_second(1.0)
    , drop_rate_counter(0)
+   , scoring_strategy()
+   , level(1)
+   , score(0)
 {
+   emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
+   emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
 }
 
 
@@ -112,6 +117,19 @@ void Gameplay::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 }
 
 
+void Gameplay::place_and_respond_to_figure()
+{
+   field.place_figure(current_player_figure);
+   int num_lines_removed = field.remove_complete_lines();
+   int points_awarded = scoring_strategy.get_points_awarded(level, num_lines_removed);
+
+   score += points_awarded;
+
+   emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
+   emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
+}
+
+
 void Gameplay::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
@@ -123,9 +141,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       try_figure_movement_and_placement(event);
       break;
    case GAME_EVENT_PLACE_FIGURE:
-      field.place_figure(current_player_figure);
-      field.remove_complete_lines();
-      emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
+      place_and_respond_to_figure();
       break;
    case GAME_EVENT_SPAWN_NEW_FIGURE:
       current_player_figure = figure_factory.make_random_shape();

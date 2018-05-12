@@ -4,6 +4,7 @@
 #include <motris/factories/figure_factory.hpp>
 #include <motris/models/field.hpp>
 #include <motris/models/figure.hpp>
+#include <motris/strategies/scoring_strategy.hpp>
 #include <allegro5/allegro.h>
 #include <framework/screen.hpp>
 #include <framework/sprite_sheet.hpp>
@@ -18,6 +19,10 @@ private:
    Figure current_player_figure;
    float drop_rate_per_second;
    float drop_rate_counter;
+   ScoringStrategy scoring_strategy;
+
+   int level;
+   int score;
 
 public:
    Gameplay();
@@ -28,6 +33,7 @@ public:
    void process_button_down_input(int gamer_input_screen_button_type);
 
    void try_figure_movement_and_placement(ALLEGRO_EVENT &event);
+   void place_and_respond_to_figure();
    void process_event(ALLEGRO_EVENT &event) override;
 };
 
