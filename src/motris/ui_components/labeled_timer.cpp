@@ -4,6 +4,7 @@
 
 #include <framework/color.hpp>
 #include <sstream>
+#include <iomanip>
 
 
 LabeledTimer::LabeledTimer(ALLEGRO_FONT *label_font, ALLEGRO_FONT *value_font, std::string label_text, std::string value_text, float x, float y, float align_x)
@@ -24,7 +25,17 @@ LabeledTimer::~LabeledTimer()
 void LabeledTimer::set_value(int value)
 {
    std::stringstream ss;
-   ss << value;
+   int hours = value / 3600000;
+   int minutes = (value / 60000) % 60;
+   int seconds = (value / 1000) % 60;
+   int milliseconds = value % 1000;
+
+   if (hours > 0) ss << std::setw(2) << std::setfill('0') << hours << ":";
+
+   ss << std::setw(2) << std::setfill('0') << minutes
+      << ":" << std::setw(2) << seconds
+      << "." << std::setw(3) << milliseconds;
+
    this->value.set_text(ss.str());
    this->value.set_placement_size_to_text();
 }
