@@ -29,7 +29,7 @@ PlayerGameplayGameboard::PlayerGameplayGameboard(Player &player, float x, float 
    , pieces_since_last_longbar(0)
    , state(STATE_UNDEF)
 {
-   emit_event(GAME_EVENT_START_GAMEPLAY);
+   emit_event(GAME_EVENT_START_GAMEPLAY, player.get_id());
 }
 
 
@@ -48,10 +48,10 @@ void PlayerGameplayGameboard::update_scene()
       while (drop_rate_counter >= drop_rate_per_second)
       {
          drop_rate_counter -= drop_rate_per_second;
-         emit_event(GAME_EVENT_FIGURE_DROP);
+         emit_event(GAME_EVENT_FIGURE_DROP, player.get_id());
       }
 
-      emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
+      emit_event(GAME_EVENT_HUD_UPDATE_TIME, player.get_id(), timer.get_elappsed_time_msec());
    }
 
    gameplay_hud->update_scene();
@@ -84,16 +84,16 @@ void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_b
    switch(gamer_input_screen_button_type)
    {
    case GAMER_BUTTON_UP:
-      emit_event(GAME_EVENT_ROTATE_FIGURE);
+      emit_event(GAME_EVENT_ROTATE_FIGURE, player.get_id());
       break;
    case GAMER_BUTTON_LEFT:
-      emit_event(GAME_EVENT_MOVE_FIGURE_LEFT);
+      emit_event(GAME_EVENT_MOVE_FIGURE_LEFT, player.get_id());
       break;
    case GAMER_BUTTON_RIGHT:
-      emit_event(GAME_EVENT_MOVE_FIGURE_RIGHT);
+      emit_event(GAME_EVENT_MOVE_FIGURE_RIGHT, player.get_id());
       break;
    case GAMER_BUTTON_DOWN:
-      emit_event(GAME_EVENT_ACCELERATE_DROP);
+      emit_event(GAME_EVENT_ACCELERATE_DROP, player.get_id());
       break;
    case GAMER_BUTTON_START:
    case GAMER_BUTTON_BACK:
@@ -110,7 +110,7 @@ void PlayerGameplayGameboard::process_button_up_input(int gamer_input_screen_but
    switch(gamer_input_screen_button_type)
    {
    case GAMER_BUTTON_DOWN:
-      emit_event(GAME_EVENT_NORMALIZE_DROP_SPEED);
+      emit_event(GAME_EVENT_NORMALIZE_DROP_SPEED, player.get_id());
       break;
    }
 }
@@ -143,7 +143,7 @@ void PlayerGameplayGameboard::try_figure_movement_and_placement(ALLEGRO_EVENT &e
    if (field.can_place_figure(temp_figure))
       current_player_figure = temp_figure;
    else if (drop_event)
-      emit_event(GAME_EVENT_PLACE_FIGURE);
+      emit_event(GAME_EVENT_PLACE_FIGURE, player.get_id());
 }
 
 
@@ -151,7 +151,7 @@ void PlayerGameplayGameboard::place_and_respond_to_figure()
 {
    if (field.will_place_above_the_top(current_player_figure))
    {
-      emit_event(GAME_EVENT_PLAYER_LOST);
+      emit_event(GAME_EVENT_PLAYER_LOST, player.get_id());
       return;
    }
 
@@ -166,17 +166,19 @@ void PlayerGameplayGameboard::place_and_respond_to_figure()
    if ((lines_cleared_before + num_lines_removed) / 10 > (lines_cleared_before / 10))
    {
       level++;
-      emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
+      emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, player.get_id(), level);
    }
 
-   emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
-   emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
-   emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
+   emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, player.get_id(), lines_cleared);
+   emit_event(GAME_EVENT_HUD_UPDATE_SCORE, player.get_id(), score);
+   emit_event(GAME_EVENT_SPAWN_NEW_FIGURE, player.get_id());
 }
 
 
 void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
 {
+   if (event.user.data1 != player.get_id()) return;
+
    switch(event.type)
    {
    case GAME_EVENT_FIGURE_DROP:
@@ -195,8 +197,8 @@ void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
       current_player_figure.move_y(-2);
       if (current_player_figure.is_type(Figure::FIGURE_SHAPE_I)) pieces_since_last_longbar=0;
       else pieces_since_last_longbar++;
-      emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
-      emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
+      emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, player.get_id(), pieces_since_last_longbar);
+      emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, player.get_id(), next_figure.get_type());
       break;
    case GAME_EVENT_NORMALIZE_DROP_SPEED:
       drop_rate_per_second = 1.0;
@@ -224,19 +226,19 @@ void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
       lines_cleared = 0;
       pieces_since_last_longbar = 0;
 
-      emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
-      emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
-      emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
-      emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
-      emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
-      emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
-      emit_event(GAME_EVENT_HUD_CLEAR_NOTIFICATION);
+      emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, player.get_id(), level);
+      emit_event(GAME_EVENT_HUD_UPDATE_SCORE, player.get_id(), score);
+      emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, player.get_id(), lines_cleared);
+      emit_event(GAME_EVENT_HUD_UPDATE_TIME, player.get_id(), timer.get_elappsed_time_msec());
+      emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, player.get_id(), pieces_since_last_longbar);
+      emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, player.get_id(), next_figure.get_type());
+      emit_event(GAME_EVENT_HUD_CLEAR_NOTIFICATION, player.get_id());
 
-      emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
+      emit_event(GAME_EVENT_SPAWN_NEW_FIGURE, player.get_id());
       break;
    case GAME_EVENT_PLAYER_LOST:
       state = PlayerGameplayGameboard::STATE_LOST;
-      emit_event(GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER);
+      emit_event(GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER, player.get_id());
       timer.stop();
       break;
    default:

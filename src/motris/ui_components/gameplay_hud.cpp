@@ -82,22 +82,22 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
    switch (event.type)
    {
    case GAME_EVENT_HUD_UPDATE_SCORE:
-      score.set_value(event.user.data1);
+      score.set_value(event.user.data2);
       break;
    case GAME_EVENT_HUD_UPDATE_LEVEL:
-      level.set_value(event.user.data1);
+      level.set_value(event.user.data2);
       break;
    case GAME_EVENT_HUD_UPDATE_LINES_CLEARED:
-      lines_cleared.set_value(event.user.data1);
+      lines_cleared.set_value(event.user.data2);
       break;
    case GAME_EVENT_HUD_UPDATE_TIME:
-      time.set_value(event.user.data1);
+      time.set_value(event.user.data2);
       break;
    case GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR:
-      since_last_longbar.set_value(event.user.data1);
+      since_last_longbar.set_value(event.user.data2);
       break;
    case GAME_EVENT_HUD_UPDATE_NEXT_FIGURE:
-      set_next_figure(static_cast<Figure::figure_t>(event.user.data1));
+      set_next_figure(static_cast<Figure::figure_t>(event.user.data2));
       break;
    case GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER:
       notification.set_text("Game Over").set_placement_size_to_text();
