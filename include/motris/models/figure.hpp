@@ -30,6 +30,8 @@ public:
 
    Figure(std::vector<vec2i> points, int color, Figure::figure_t type);
 
+   figure_t get_type();
+
    bool is_type(Figure::figure_t type);
 
    void move_x(int delta);

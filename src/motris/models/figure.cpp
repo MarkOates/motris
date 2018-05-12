@@ -12,6 +12,12 @@ Figure::Figure(std::vector<vec2i> points, int color, Figure::figure_t type)
 {};
 
 
+Figure::figure_t Figure::get_type()
+{
+   return type;
+}
+
+
 bool Figure::is_type(Figure::figure_t type)
 {
    return this->type == type;
