@@ -5,10 +5,17 @@
 #include <framework/bitmap.hpp>
 
 
-Figure::Figure(std::vector<vec2i> points, int color)
+Figure::Figure(std::vector<vec2i> points, int color, Figure::figure_t type)
    : points(points)
    , color(color)
+   , type(type)
 {};
+
+
+bool Figure::is_type(Figure::figure_t type)
+{
+   return this->type == type;
+}
 
 
 void Figure::move_x(int delta)

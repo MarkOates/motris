@@ -7,7 +7,7 @@
 class FigureFactory
 {
 private:
-   Figure construct_figure(std::vector<int> positions, int color);
+   Figure construct_figure(std::vector<int> positions, int color, Figure::figure_t type);
 
 public:
    FigureFactory();
@@ -20,6 +20,8 @@ public:
    Figure make_L_shape();
    Figure make_J_shape();
    Figure make_O_shape();
+
+   Figure make_figure(Figure::figure_t type);
 
    Figure make_random_shape();
 };
