@@ -46,7 +46,7 @@ void Figure::rotate()
    for (auto &point : points)
    {
       vec2i temp(point.y - point_of_rotation.y, point.x - point_of_rotation.x);
-      rotated_points.push_back({ point_of_rotation.x - temp.x, point_of_rotation.y + temp.y });
+      rotated_points.push_back(vec2i{ point_of_rotation.x - temp.x, point_of_rotation.y + temp.y });
    }
 
    points = rotated_points;
