@@ -24,6 +24,8 @@ private:
    LabeledText since_last_longbar;
    LabeledText time;
 
+   Text notification;
+
 public:
    GameplayHUD();
    ~GameplayHUD();

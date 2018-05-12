@@ -3,6 +3,7 @@
 #include <motris/screens/gameplay_hud.hpp>
 
 #include <motris/factories/figure_factory.hpp>
+#include <framework/color.hpp>
 #include <motris/events.hpp>
 
 
@@ -22,6 +23,7 @@ GameplayHUD::GameplayHUD()
    , next(label_font, value_font, "NEXT", "", RIGHT_COLUMN_X, 200, 0.0)
    , since_last_longbar(label_font, value_font, "SINCE LAST LONGBAR", "29", RIGHT_COLUMN_X, 500, 0.0)
    , time(label_font, value_font, "TIME", "0:32", RIGHT_COLUMN_X, 650, 0.0)
+   , notification(value_font, "", 880, 500, color::white)
 {
    if (!label_font) throw std::runtime_error("label_font not loaded");
    if (!value_font) throw std::runtime_error("value_font not loaded");
@@ -53,6 +55,8 @@ void GameplayHUD::render_scene()
    next_figure_placement.restore_transform();
    since_last_longbar.draw();
    time.draw();
+
+   notification.draw();
 }
 
 
@@ -91,6 +95,11 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
       break;
    case GAME_EVENT_HUD_UPDATE_NEXT_FIGURE:
       set_next_figure(static_cast<Figure::figure_t>(event.user.data1));
+      break;
+   case GAME_EVENT_PLAYER_LOST:
+      notification
+         .set_text("Game Over")
+         .set_placement_size_to_text();
       break;
    default:
       //std::cout << "GameplayHUD Unrecognized Event << " << std::endl;
