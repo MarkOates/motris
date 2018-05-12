@@ -8,6 +8,7 @@
 #include <motris/strategies/scoring_strategy.hpp>
 #include <motris/ui_components/gameplay_hud_interface.hpp>
 #include <allegro5/allegro.h>
+#include <framework/placement2d.hpp>
 #include <framework/screen.hpp>
 #include <framework/sprite_sheet.hpp>
 
@@ -22,6 +23,7 @@ private:
       STATE_LOST,
    };
 
+   placement2d placement;
    GameplayHUDInterface *gameplay_hud;
    SpriteSheet piece_tiles_sprite_sheet;
    FigureFactory figure_factory;

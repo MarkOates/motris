@@ -7,10 +7,12 @@
 #include <motris/events.hpp>
 
 
-static int const GAMEPLAY_X = 670;
-static int const GAMEPLAY_Y = 70;
-static int const LEFT_COLUMN_X = (550 - GAMEPLAY_X);
-static int const RIGHT_COLUMN_X = (1200 - GAMEPLAY_X);
+static int const SCREEN_W = 1792;
+static int const SCREEN_H = 1008;
+static int const GAMEPLAY_X = 0;
+static int const GAMEPLAY_Y = (SCREEN_H/2);
+static int const LEFT_COLUMN_X = (-250);
+static int const RIGHT_COLUMN_X = (250);
 
 
 GameplayHUD::GameplayHUD()

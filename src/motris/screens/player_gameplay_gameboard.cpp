@@ -11,6 +11,7 @@
 
 PlayerGameplayGameboard::PlayerGameplayGameboard()
    : Screen()
+   , placement(1792/2, 1008/2, 0, 0)
    , gameplay_hud(new GameplayHUD)
    , piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , figure_factory()
@@ -51,13 +52,12 @@ void PlayerGameplayGameboard::update_scene()
 
 void PlayerGameplayGameboard::render_scene()
 {
-   placement2d gameboard_placement;
-      gameboard_placement.position = vec2d(670, 70);
-      gameboard_placement.start_transform();
+   placement.start_transform();
 
       placement2d field_placement;
+         field_placement.size = vec2d(16*10, 16*20);
+         field_placement.align = vec2d(0.5, 0.5);
          field_placement.scale = vec2d(2.65, 2.65);
-         field_placement.position = vec2d(0, 0);
          field_placement.start_transform();
 
          field.draw(piece_tiles_sprite_sheet, 16);
@@ -66,7 +66,9 @@ void PlayerGameplayGameboard::render_scene()
       field_placement.restore_transform();
 
       gameplay_hud->render_scene();
-   gameboard_placement.restore_transform();
+   placement.restore_transform();
+
+   placement.draw_origin();
 }
 
 void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_button_type)
