@@ -23,6 +23,7 @@ private:
 
    int level;
    int score;
+   int lines_cleared;
 
 public:
    Gameplay();

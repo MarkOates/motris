@@ -62,6 +62,9 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
    case GAME_EVENT_HUD_UPDATE_LEVEL:
       level.set_value(event.user.data1);
       break;
+   case GAME_EVENT_HUD_UPDATE_LINES_CLEARED:
+      lines_cleared.set_value(event.user.data1);
+      break;
    default:
       //std::cout << "GameplayHUD Unrecognized Event << " << std::endl;
       break;

@@ -18,9 +18,11 @@ Gameplay::Gameplay()
    , scoring_strategy()
    , level(1)
    , score(0)
+   , lines_cleared(0)
 {
    emit_event(GAME_EVENT_HUD_UPDATE_LEVEL, level);
    emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
+   emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
 }
 
 
@@ -123,8 +125,10 @@ void Gameplay::place_and_respond_to_figure()
    int num_lines_removed = field.remove_complete_lines();
    int points_awarded = scoring_strategy.get_points_awarded(level, num_lines_removed);
 
+   lines_cleared += num_lines_removed;
    score += points_awarded;
 
+   emit_event(GAME_EVENT_HUD_UPDATE_LINES_CLEARED, lines_cleared);
    emit_event(GAME_EVENT_HUD_UPDATE_SCORE, score);
    emit_event(GAME_EVENT_SPAWN_NEW_FIGURE);
 }
