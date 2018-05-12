@@ -18,6 +18,7 @@ private:
    {
       STATE_UNDEF = 0,
       STATE_GAMEPLAY,
+      STATE_LOST,
    };
 
    SpriteSheet piece_tiles_sprite_sheet;

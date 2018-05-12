@@ -125,6 +125,12 @@ void Gameplay::try_figure_movement_and_placement(ALLEGRO_EVENT &event)
 
 void Gameplay::place_and_respond_to_figure()
 {
+   if (field.will_place_above_the_top(current_player_figure))
+   {
+      emit_event(GAME_EVENT_PLAYER_LOST);
+      return;
+   }
+
    field.place_figure(current_player_figure);
    int num_lines_removed = field.remove_complete_lines();
    int lines_cleared_before = lines_cleared;
@@ -201,6 +207,10 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       emit_event(GAME_EVENT_HUD_UPDATE_TIME, timer.get_elappsed_time_msec());
       emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);
       emit_event(GAME_EVENT_HUD_UPDATE_NEXT_FIGURE, next_figure.get_type());
+      break;
+   case GAME_EVENT_PLAYER_LOST:
+      state = Gameplay::STATE_LOST;
+      timer.stop();
       break;
    default:
       std::cout << "Unrecognized Event << " << std::endl;
