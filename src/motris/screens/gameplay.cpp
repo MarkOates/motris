@@ -49,7 +49,7 @@ void Gameplay::render_scene()
    place.start_transform();
 
    field.draw(piece_tiles_sprite_sheet, 16);
-   current_player_figure.draw(piece_tiles_sprite_sheet, 16);
+   current_player_figure.draw(piece_tiles_sprite_sheet, 16, true);
 
    place.restore_transform();
 }
@@ -162,6 +162,7 @@ void Gameplay::process_event(ALLEGRO_EVENT &event)
       current_player_figure = next_figure;
       next_figure = figure_factory.make_random_shape();
       current_player_figure.move_x(4);
+      current_player_figure.move_y(-2);
       if (current_player_figure.is_type(Figure::FIGURE_SHAPE_I)) pieces_since_last_longbar=0;
       else pieces_since_last_longbar++;
       emit_event(GAME_EVENT_HUD_UPDATE_PIECES_SINCE_LAST_LONGBAR, pieces_since_last_longbar);

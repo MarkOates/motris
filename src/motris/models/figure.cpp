@@ -53,13 +53,14 @@ void Figure::rotate()
 }
 
 
-void Figure::draw(SpriteSheet &sprite_sheet, int tile_size)
+void Figure::draw(SpriteSheet &sprite_sheet, int tile_size, bool hide_above_y_0)
 {
    Bitmap tile(sprite_sheet.get_sprite(color));
    tile.placement.clear();
 
    for (auto &point : points)
    {
+      if (hide_above_y_0 && point.y < 0) continue;
       tile.placement.position = vec2d(point.x * tile_size, point.y * tile_size);
       tile.draw();
    }

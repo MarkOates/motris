@@ -38,7 +38,7 @@ public:
    void move_y(int delta);
    void rotate();
 
-   void draw(SpriteSheet &sprite_sheet, int tile_size);
+   void draw(SpriteSheet &sprite_sheet, int tile_size, bool hide_above_y_0=false);
 };
 
 
