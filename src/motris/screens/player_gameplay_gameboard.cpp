@@ -83,23 +83,23 @@ void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_b
 {
    switch(gamer_input_screen_button_type)
    {
-   case GAMER_BUTTON_UP:
+   case PLAYER_INPUT_COMMAND_UP:
       emit_event(GAME_EVENT_ROTATE_FIGURE, player.get_id());
       break;
-   case GAMER_BUTTON_LEFT:
+   case PLAYER_INPUT_COMMAND_LEFT:
       emit_event(GAME_EVENT_MOVE_FIGURE_LEFT, player.get_id());
       break;
-   case GAMER_BUTTON_RIGHT:
+   case PLAYER_INPUT_COMMAND_RIGHT:
       emit_event(GAME_EVENT_MOVE_FIGURE_RIGHT, player.get_id());
       break;
-   case GAMER_BUTTON_DOWN:
+   case PLAYER_INPUT_COMMAND_DOWN:
       emit_event(GAME_EVENT_ACCELERATE_DROP, player.get_id());
       break;
-   case GAMER_BUTTON_START:
-   case GAMER_BUTTON_BACK:
-   case GAMER_BUTTON_A:
-   case GAMER_BUTTON_B:
-   case GAMER_BUTTON_C:
+   case PLAYER_INPUT_COMMAND_START:
+   case PLAYER_INPUT_COMMAND_BACK:
+   case PLAYER_INPUT_COMMAND_A:
+   case PLAYER_INPUT_COMMAND_B:
+   case PLAYER_INPUT_COMMAND_C:
       break;
    };
 }
@@ -109,7 +109,7 @@ void PlayerGameplayGameboard::process_button_up_input(int gamer_input_screen_but
 {
    switch(gamer_input_screen_button_type)
    {
-   case GAMER_BUTTON_DOWN:
+   case PLAYER_INPUT_COMMAND_DOWN:
       emit_event(GAME_EVENT_NORMALIZE_DROP_SPEED, player.get_id());
       break;
    }
