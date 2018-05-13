@@ -287,7 +287,7 @@ void GamerInputScreen::process_event(ALLEGRO_EVENT &event)
       break;
    case ALLEGRO_EVENT_JOYSTICK_BUTTON_UP:
       joy_button_up_func(event);
-   break;
+      break;
    case ALLEGRO_EVENT_JOYSTICK_CONFIGURATION:
       joy_config_func(event);
       break;
