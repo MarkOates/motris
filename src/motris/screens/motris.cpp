@@ -9,10 +9,10 @@
 Motris::Motris(Framework &framework)
    : framework(framework)
    , gamer_input_screen()
-   , player_1("Player 1")
-   , player_2("Player 2")
-   , player_3("Player 3")
-   , player_4("Player 4")
+   , player_1("Player 1", 1)
+   , player_2("Player 2", 2)
+   , player_3("Player 3", 3)
+   , player_4("Player 4", 4)
 {
    framework.add_screen(&gamer_input_screen);
    emit_event(GAME_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN);

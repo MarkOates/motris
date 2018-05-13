@@ -177,6 +177,20 @@ void PlayerGameplayGameboard::place_and_respond_to_figure()
 
 void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
 {
+   switch(event.type)
+   {
+   case ALLEGRO_EVENT_TIMER:
+      update_scene();
+      render_scene();
+      break;
+   case GAMER_BUTTON_DOWN_EVENT:
+      if (event.user.data1 == player.get_player_num()) process_button_down_input(event.user.data2);
+      break;
+   case GAMER_BUTTON_UP_EVENT:
+      if (event.user.data1 == player.get_player_num()) process_button_up_input(event.user.data2);
+      break;
+   }
+
    if (event.user.data1 != player.get_id()) return;
 
    switch(event.type)
@@ -206,16 +220,6 @@ void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
    case GAME_EVENT_ACCELERATE_DROP:
       drop_rate_per_second = 1.0/10;
       drop_rate_counter = drop_rate_per_second;
-      break;
-   case ALLEGRO_EVENT_TIMER:
-      update_scene();
-      render_scene();
-      break;
-   case GAMER_BUTTON_DOWN_EVENT:
-      process_button_down_input(event.user.data1);
-      break;
-   case GAMER_BUTTON_UP_EVENT:
-      process_button_up_input(event.user.data1);
       break;
    case GAME_EVENT_START_GAMEPLAY:
       state = PlayerGameplayGameboard::STATE_GAMEPLAY;

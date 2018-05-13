@@ -6,8 +6,9 @@
 int Player::last_player_id = 0;
 
 
-Player::Player(std::string name)
-   : player_id(last_player_id++)
+Player::Player(std::string name, int player_num)
+   : player_num(player_num)
+   , player_id(last_player_id++)
    , name(name)
 {
 }
@@ -15,6 +16,12 @@ Player::Player(std::string name)
 
 Player::~Player()
 {
+}
+
+
+int Player::get_player_num()
+{
+   return player_num;
 }
 
 
