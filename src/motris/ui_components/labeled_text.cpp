@@ -30,6 +30,13 @@ void LabeledText::set_value(int value)
 }
 
 
+void LabeledText::set_value(std::string value)
+{
+   this->value.set_text(value);
+   this->value.set_placement_size_to_text();
+}
+
+
 void LabeledText::draw()
 {
    placement.start_transform();

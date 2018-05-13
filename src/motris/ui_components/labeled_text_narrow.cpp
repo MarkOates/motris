@@ -30,6 +30,13 @@ void LabeledTextNarrow::set_value(int value)
 }
 
 
+void LabeledTextNarrow::set_value(std::string value)
+{
+   this->value.set_text(value);
+   this->value.set_placement_size_to_text();
+}
+
+
 void LabeledTextNarrow::draw()
 {
    placement.start_transform();

@@ -17,6 +17,7 @@ public:
    ~LabeledTextNarrow();
 
    void set_value(int value);
+   void set_value(std::string value);
 
    void draw();
 };
