@@ -28,7 +28,7 @@ GameplayHUD::GameplayHUD()
    , next(label_font, value_font, "NEXT", "", RIGHT_COLUMN_X, 200 - GAMEPLAY_Y, 0.0)
    , since_last_longbar(label_font, value_font, "SINCE LAST LONGBAR", "29", RIGHT_COLUMN_X, 500 - GAMEPLAY_Y, 0.0)
    , time(label_font, value_font, small_value_font, "TIME", "-", RIGHT_COLUMN_X, 650 - GAMEPLAY_Y, 0.0)
-   , notification(value_font, "", 880 - GAMEPLAY_X, 500 - GAMEPLAY_Y, color::white)
+   , notification(value_font, "", 0, 500 - GAMEPLAY_Y, color::white)
 {
    if (!label_font) throw std::runtime_error("label_font not loaded");
    if (!value_font) throw std::runtime_error("value_font not loaded");
