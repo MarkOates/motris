@@ -2,7 +2,7 @@
 
 #include <motris/screens/player_gameplay_gameboard.hpp>
 
-#include <motris/ui_components/gameplay_hud.hpp>
+#include <motris/ui_components/gameplay_hud_narrow.hpp>
 #include <framework/screens/gamer_input_screen.hpp>
 #include <framework/color.hpp>
 #include <framework/placement2d.hpp>
@@ -13,7 +13,7 @@ PlayerGameplayGameboard::PlayerGameplayGameboard(Player &player, float x, float 
    : Screen()
    , player(player)
    , placement(x, y, 0, 0, 0, scale, scale, 0.5, 0.5, 0, 0)
-   , gameplay_hud(new GameplayHUD)
+   , gameplay_hud(new GameplayHUDNarrow)
    , piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , figure_factory()
    , field(10, 20)
@@ -75,8 +75,6 @@ void PlayerGameplayGameboard::render_scene()
 
       gameplay_hud->render_scene();
    placement.restore_transform();
-
-   placement.draw_origin();
 }
 
 void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_button_type)
