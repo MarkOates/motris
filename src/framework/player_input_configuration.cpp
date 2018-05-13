@@ -79,17 +79,12 @@ void PlayerInputConfiguration::setup_default_joystick_mapping_for_XBOX_360_CONTR
 {
    joystick_mappings.clear();
 
-   // there are no mappings for up/down/left/right
-   //keyboard_mappings[PLAYER_INPUT_COMMAND_UP] = 999;
-   //keyboard_mappings[PLAYER_INPUT_COMMAND_DOWN] = 999;
-   //keyboard_mappings[PLAYER_INPUT_COMMAND_LEFT] = 999;
-   //keyboard_mappings[PLAYER_INPUT_COMMAND_RIGHT] = 999;
+   // see http://html5gamepad.com/ to test mappings (however the numberings are not consistent)
 
-   keyboard_mappings[11] = PLAYER_INPUT_COMMAND_START;
-   keyboard_mappings[6] = PLAYER_INPUT_COMMAND_BACK;
-   keyboard_mappings[3] = PLAYER_INPUT_COMMAND_A;
-   keyboard_mappings[0] = PLAYER_INPUT_COMMAND_B;
-   keyboard_mappings[1] = PLAYER_INPUT_COMMAND_C;
+   joystick_mappings[0] = PLAYER_INPUT_COMMAND_DOWN;
+   joystick_mappings[1] = PLAYER_INPUT_COMMAND_RIGHT;
+   joystick_mappings[3] = PLAYER_INPUT_COMMAND_LEFT;
+   joystick_mappings[4] = PLAYER_INPUT_COMMAND_UP;
 }
 
 

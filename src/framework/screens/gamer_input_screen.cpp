@@ -68,7 +68,6 @@ void GamerInputScreen::joy_axis_func(ALLEGRO_EVENT &event)
 
 void GamerInputScreen::joy_button_down_func(ALLEGRO_EVENT &event)
 {
-   std::cout << "GamerInputScreen::joy_button_down_func(): " << event.joystick.button << std::endl;
    for (auto &player_input_configuration : player_input_configurations)
    {
       player_input_command_t command = player_input_configuration.second.get_joystick_mapping(event.joystick.button);
@@ -79,7 +78,6 @@ void GamerInputScreen::joy_button_down_func(ALLEGRO_EVENT &event)
 
 void GamerInputScreen::joy_button_up_func(ALLEGRO_EVENT &event)
 {
-   std::cout << "GamerInputScreen::joy_button_up_func(): " << event.joystick.button << std::endl;
    for (auto &player_input_configuration : player_input_configurations)
    {
       player_input_command_t command = player_input_configuration.second.get_joystick_mapping(event.joystick.button);

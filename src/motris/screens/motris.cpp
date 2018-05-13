@@ -17,8 +17,11 @@ Motris::Motris(Framework &framework)
    framework.add_screen(&gamer_input_screen);
    emit_event(GAME_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN);
 
-   gamer_input_screen.player_input_configurations[2].setup_default_keyboard_mapping_for_ARROW_KEYS();
-   gamer_input_screen.player_input_configurations[2].setup_default_joystick_mapping_for_XBOX_360_CONTROLLER();
+   // player 1 is on keyboard
+   gamer_input_screen.player_input_configurations[player_1.get_player_num()].setup_default_keyboard_mapping_for_ARROW_KEYS();
+
+   // player 2 is on joystick
+   gamer_input_screen.player_input_configurations[player_2.get_player_num()].setup_default_joystick_mapping_for_XBOX_360_CONTROLLER();
 }
 
 
