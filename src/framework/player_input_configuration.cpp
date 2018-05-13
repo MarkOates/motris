@@ -36,9 +36,9 @@ bool PlayerInputConfiguration::is_usiing_joystick_axes_for_arrow_commands()
 }
 
 
-bool PlayerInputConfiguration::is_joystick_num(int num)
+bool PlayerInputConfiguration::is_joystick_num(int joystick_num)
 {
-   return this->joystick_num == num;
+   return this->joystick_num == joystick_num;
 }
 
 

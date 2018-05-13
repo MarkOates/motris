@@ -24,7 +24,7 @@ public:
 
    bool is_usiing_joystick_axes_for_arrow_commands();
 
-   bool is_joystick_num(int num);
+   bool is_joystick_num(int joystick_num);
    player_input_command_t get_keyboard_mapping(int al_keycode);
    player_input_command_t get_joystick_mapping(int joystick_button_num);
 
