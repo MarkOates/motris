@@ -9,6 +9,10 @@
 
 
 
+static const int PLAYER_NUM = 1;
+
+
+
 
 GamerInputScreen::GamerInputScreen()
    : Screen()
@@ -66,7 +70,8 @@ void GamerInputScreen::emit_gamer_button_up(button_t button)
 {
    ALLEGRO_EVENT my_event;
    my_event.user.type = GAMER_BUTTON_UP_EVENT;
-   my_event.user.data1 = button;
+   my_event.user.data1 = PLAYER_NUM;
+   my_event.user.data2 = button;
    pressed[button] = false;
    al_emit_user_event(&input_event_source, &my_event, NULL);
 }
@@ -78,7 +83,8 @@ void GamerInputScreen::emit_gamer_button_down(button_t button)
 {
    ALLEGRO_EVENT my_event;
    my_event.user.type = GAMER_BUTTON_DOWN_EVENT;
-   my_event.user.data1 = button;
+   my_event.user.data1 = PLAYER_NUM;
+   my_event.user.data2 = button;
    pressed[button] = true;
    al_emit_user_event(&input_event_source, &my_event, NULL);
 }
