@@ -23,7 +23,7 @@ PlayerGameplayGameboard::PlayerGameplayGameboard(Player &player, float x, float 
    , drop_rate_counter(0)
    , scoring_strategy()
    , timer()
-   , level(1)
+   , level(0)
    , score(0)
    , lines_cleared(0)
    , pieces_since_last_longbar(0)
@@ -223,7 +223,7 @@ void PlayerGameplayGameboard::process_event(ALLEGRO_EVENT &event)
       state = PlayerGameplayGameboard::STATE_GAMEPLAY;
       timer = Timer();
       timer.start();
-      level = 0;
+      level = 1;
       score = 0;
       lines_cleared = 0;
       pieces_since_last_longbar = 0;
