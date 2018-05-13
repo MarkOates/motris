@@ -3,6 +3,7 @@
 #include <motris/ui_components/gameplay_hud_narrow.hpp>
 
 #include <motris/factories/figure_factory.hpp>
+#include <motris/helpers/score_number_formatter.hpp>
 #include <framework/color.hpp>
 #include <motris/events.hpp>
 
@@ -24,7 +25,7 @@ GameplayHUDNarrow::GameplayHUDNarrow(std::string player_name_str)
    , next_figure_field(4, 5)
    , player_name(player_name_font, player_name_str, -210, -475, color::white)
    , level(label_font, value_font, "LEVEL", "12", -140, 472)
-   , score(label_font, value_font, "SCORE", "79179", 60, 472)
+   , score(label_font, value_font, "SCORE", ScoreNumberFormatter(0).get_formatted_score(), 60, 472)
    , lines(label_font, value_font, "LINES", "14", 60, 520)
    , notification(notification_font, "", 0, 500 - GAMEPLAY_Y, color::white)
 {
@@ -85,7 +86,7 @@ void GameplayHUDNarrow::process_event(ALLEGRO_EVENT &event)
    switch (event.type)
    {
    case GAME_EVENT_HUD_UPDATE_SCORE:
-      score.set_value(event.user.data2);
+      score.set_value(ScoreNumberFormatter(event.user.data2).get_formatted_score());
       break;
    case GAME_EVENT_HUD_UPDATE_LEVEL:
       level.set_value(event.user.data2);

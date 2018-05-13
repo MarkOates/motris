@@ -3,6 +3,7 @@
 #include <motris/ui_components/gameplay_hud.hpp>
 
 #include <motris/factories/figure_factory.hpp>
+#include <motris/helpers/score_number_formatter.hpp>
 #include <framework/color.hpp>
 #include <motris/events.hpp>
 
@@ -23,7 +24,7 @@ GameplayHUD::GameplayHUD()
    , sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , next_figure_field(4, 5)
    , level(label_font, large_font, "LEVEL", "13", LEFT_COLUMN_X, 200 - GAMEPLAY_Y, 1.0)
-   , score(label_font, value_font, "SCORE", "6273459", LEFT_COLUMN_X, 500 - GAMEPLAY_Y, 1.0)
+   , score(label_font, value_font, "SCORE", ScoreNumberFormatter(0).get_formatted_score(), LEFT_COLUMN_X, 500 - GAMEPLAY_Y, 1.0)
    , lines_cleared(label_font, value_font, "LINES CLEARED", "129", LEFT_COLUMN_X, 650 - GAMEPLAY_Y, 1.0)
    , next(label_font, value_font, "NEXT", "", RIGHT_COLUMN_X, 200 - GAMEPLAY_Y, 0.0)
    , since_last_longbar(label_font, value_font, "SINCE LAST LONGBAR", "29", RIGHT_COLUMN_X, 500 - GAMEPLAY_Y, 0.0)
@@ -82,7 +83,7 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
    switch (event.type)
    {
    case GAME_EVENT_HUD_UPDATE_SCORE:
-      score.set_value(event.user.data2);
+      score.set_value(ScoreNumberFormatter(event.user.data2).get_formatted_score());
       break;
    case GAME_EVENT_HUD_UPDATE_LEVEL:
       level.set_value(event.user.data2);
