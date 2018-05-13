@@ -46,9 +46,6 @@ private:
    void joy_config_func(ALLEGRO_EVENT &event);
 
 public:
-
-   bool show_graphic = true;
-
    int button_up_joystick_buttonmap = 0;
    int button_down_joystick_buttonmap = 0;
    int button_left_joystick_buttonmap = 0;
@@ -88,7 +85,6 @@ public:
    void setup_default_keyboard_mapping_for_ARROW_KEYS();
    void setup_default_joystick_mapping_for_LOGITECH_RUMBLEPAD_2();
    void setup_default_joystick_mapping_for_XBOX_360_CONTROLLER();
-   static void draw_gamer_input_state(bool button[GAMER_BUTTON_SIZE_MAX], float opacity=0.5, float x=0, float y=0, float align_x=0.0, float align_y=0.0, float scale_x=0.5, float scale_y=0.5);
 };
 
 

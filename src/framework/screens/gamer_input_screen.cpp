@@ -263,49 +263,6 @@ void GamerInputScreen::joy_button_up_func(ALLEGRO_EVENT &event)
 
 
 
-void GamerInputScreen::draw_gamer_input_state(bool button[GAMER_BUTTON_SIZE_MAX], float opacity, float x, float y, float align_x, float align_y, float scale_x, float scale_y)
-{
-   throw std::runtime_error("This feature has been disabled because of a dependency on a bitmap, and should be refactored");
-
-   //// get the controller bmp
-   //ALLEGRO_BITMAP *controller = nullptr;//Framework::bitmap("game_controller.png");
-
-   //// store the state and use a new transform
-   //ALLEGRO_STATE prev_state;
-   //al_store_state(&prev_state, ALLEGRO_STATE_TRANSFORM);
-
-   //ALLEGRO_TRANSFORM t;
-   //al_identity_transform(&t);
-   //al_translate_transform(&t, -align_x*al_get_bitmap_width(controller), -align_y*al_get_bitmap_height(controller));
-   //al_scale_transform(&t, scale_x, scale_y);
-   //al_translate_transform(&t, x, y);
-   //al_use_transform(&t);
-
-   //// draw the controller backdrop
-   //al_draw_tinted_bitmap(controller, al_map_rgba_f(opacity, opacity, opacity, opacity), 0, 0, 0);
-
-   //// draw the buttons
-   //al_draw_filled_circle(163, 42, 9, button[GAMER_BUTTON_A] ? color::lime : color::transparent); // button 1
-   //al_draw_filled_circle(182, 57, 9, button[GAMER_BUTTON_B] ? color::lime : color::transparent); // button 2
-   //al_draw_filled_circle(201, 42, 9, button[GAMER_BUTTON_C] ? color::lime : color::transparent); // button 3 
-
-   //al_draw_filled_circle(122, 83, 7, button[GAMER_BUTTON_BACK] ? color::lime : color::transparent); // button back 
-   //al_draw_filled_circle(148, 83, 7, button[GAMER_BUTTON_START] ? color::lime : color::transparent); // button start 
-
-   //// draw the hat
-   //float s = 6;
-   //al_draw_filled_rounded_rectangle(79-s, 38-s, 79+s, 38+s, 3, 3, button[GAMER_BUTTON_UP] ? color::lime : color::transparent); // button up
-   //al_draw_filled_rounded_rectangle(79-s, 65-s, 79+s, 65+s, 3, 3, button[GAMER_BUTTON_DOWN] ? color::lime : color::transparent); // button down
-   //al_draw_filled_rounded_rectangle(65-s, 51-s, 65+s, 51+s, 3, 3, button[GAMER_BUTTON_LEFT] ? color::lime : color::transparent); // button left
-   //al_draw_filled_rounded_rectangle(93-s, 51-s, 93+s, 51+s, 3, 3, button[GAMER_BUTTON_RIGHT] ? color::lime : color::transparent); // button right
-
-   //// clean up
-   //al_restore_state(&prev_state);
-}
-
-
-
-
 void GamerInputScreen::joy_config_func(ALLEGRO_EVENT &event)
 {
 }
