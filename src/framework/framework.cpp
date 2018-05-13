@@ -23,6 +23,7 @@ Framework::Framework()
    if (!al_init_image_addon()) throw std::runtime_error("al_init_image_addon() failed");
    if (!al_init_font_addon()) throw std::runtime_error("al_init_font_addon() failed");
    if (!al_init_ttf_addon()) throw std::runtime_error("al_init_ttf_addon() failed");
+   if (!al_install_joystick()) throw std::runtime_error("al_install_joystick() failed");
 
    ALLEGRO_PATH *resource_path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
    al_change_directory(al_path_cstr(resource_path, ALLEGRO_NATIVE_PATH_SEP));
@@ -42,6 +43,7 @@ Framework::Framework()
    al_register_event_source(master_event_queue, timer_event_source);
    al_register_event_source(master_event_queue, keyboard_event_source);
    al_register_event_source(master_event_queue, al_get_display_event_source(display));
+   al_register_event_source(master_event_queue, al_get_joystick_event_source());
 }
 
 
