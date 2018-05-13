@@ -100,7 +100,7 @@ void GameplayHUD::process_event(ALLEGRO_EVENT &event)
       set_next_figure(static_cast<Figure::figure_t>(event.user.data2));
       break;
    case GAME_EVENT_HUD_UPDATE_NOTIFICATION_GAME_OVER:
-      notification.set_text("Game Over").set_placement_size_to_text();
+      notification.set_text("GAME OVER").set_placement_size_to_text();
       break;
    case GAME_EVENT_HUD_CLEAR_NOTIFICATION:
       notification.set_text("");
