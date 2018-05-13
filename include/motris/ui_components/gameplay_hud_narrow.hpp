@@ -28,7 +28,7 @@ private:
    Text notification;
 
 public:
-   GameplayHUDNarrow();
+   GameplayHUDNarrow(std::string player_name_str);
    ~GameplayHUDNarrow();
 
    void set_next_figure(Figure::figure_t type);

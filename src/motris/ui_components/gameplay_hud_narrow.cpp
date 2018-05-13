@@ -15,14 +15,14 @@ static int const LEFT_COLUMN_X = (-250);
 static int const RIGHT_COLUMN_X = (250);
 
 
-GameplayHUDNarrow::GameplayHUDNarrow()
+GameplayHUDNarrow::GameplayHUDNarrow(std::string player_name_str)
    : player_name_font(al_load_font("data/fonts/Questrial-Regular.ttf", 47, 0))
    , label_font(al_load_font("data/fonts/LeagueGothic-Regular.otf", 42, 0))
    , value_font(al_load_font("data/fonts/Questrial-Regular.ttf", 42, 0))
    , notification_font(al_load_font("data/fonts/Questrial-Regular.ttf", 70, 0))
    , sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , next_figure_field(4, 5)
-   , player_name(player_name_font, "SARAH", -210, -475, color::white)
+   , player_name(player_name_font, player_name_str, -210, -475, color::white)
    , level(label_font, value_font, "LEVEL", "12", -140, 472)
    , score(label_font, value_font, "SCORE", "79179", 60, 472)
    , lines(label_font, value_font, "LINES", "14", 60, 520)
