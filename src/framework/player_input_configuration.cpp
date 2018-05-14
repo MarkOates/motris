@@ -54,6 +54,7 @@ player_input_command_t PlayerInputConfiguration::get_joystick_mapping(int joysti
 
 bool PlayerInputConfiguration::is_joystick(ALLEGRO_JOYSTICK *joystick)
 {
+   if (this->joystick == nullptr) return false;
    return this->joystick == joystick;
 }
 
