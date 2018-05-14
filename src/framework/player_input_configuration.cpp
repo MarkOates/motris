@@ -30,21 +30,9 @@ void PlayerInputConfiguration::set_use_joystick_axes_for_arrow_commands(bool use
 }
 
 
-bool PlayerInputConfiguration::is_usiing_joystick_axes_for_arrow_commands()
-{
-   return use_joystick_axes_for_arrow_commands;
-}
-
-
 ALLEGRO_JOYSTICK *PlayerInputConfiguration::get_joystick()
 {
    return joystick;
-}
-
-
-bool PlayerInputConfiguration::is_joystick(ALLEGRO_JOYSTICK *joystick)
-{
-   return this->joystick == joystick;
 }
 
 
@@ -61,6 +49,18 @@ player_input_command_t PlayerInputConfiguration::get_joystick_mapping(int joysti
    std::map<int, player_input_command_t>::iterator it = joystick_mappings.find(joystick_button_num);
    if (it == joystick_mappings.end()) return PLAYER_INPUT_COMMAND_UNDEF;
    return it->second;
+}
+
+
+bool PlayerInputConfiguration::is_joystick(ALLEGRO_JOYSTICK *joystick)
+{
+   return this->joystick == joystick;
+}
+
+
+bool PlayerInputConfiguration::is_usiing_joystick_axes_for_arrow_commands()
+{
+   return use_joystick_axes_for_arrow_commands;
 }
 
 
