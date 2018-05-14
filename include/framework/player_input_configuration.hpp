@@ -19,8 +19,6 @@ public:
    ~PlayerInputConfiguration();
 
    void set_joystick(ALLEGRO_JOYSTICK *joystick);
-   //void add_keyboard_mapping(player_input_command_t button, int al_keycode);
-   //void add_joystic_mapping(player_input_command_t button, int joystick_button_num);
    void set_use_joystick_axes_for_arrow_commands(bool use=true);
 
    bool is_usiing_joystick_axes_for_arrow_commands();
