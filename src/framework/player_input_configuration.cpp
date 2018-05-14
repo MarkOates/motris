@@ -6,7 +6,7 @@
 
 
 PlayerInputConfiguration::PlayerInputConfiguration()
-   : joystick_num(-1)
+   : joystick(nullptr)
    , joystick_mappings()
    , keyboard_mappings()
 {
@@ -18,9 +18,9 @@ PlayerInputConfiguration::~PlayerInputConfiguration()
 }
 
 
-void PlayerInputConfiguration::set_joystick_num(int joystick_num)
+void PlayerInputConfiguration::set_joystick(ALLEGRO_JOYSTICK *joystick)
 {
-   this->joystick_num = joystick_num;
+   this->joystick = joystick;
 }
 
 
@@ -36,9 +36,15 @@ bool PlayerInputConfiguration::is_usiing_joystick_axes_for_arrow_commands()
 }
 
 
-bool PlayerInputConfiguration::is_joystick_num(int joystick_num)
+ALLEGRO_JOYSTICK *PlayerInputConfiguration::get_joystick()
 {
-   return this->joystick_num == joystick_num;
+   return joystick;
+}
+
+
+bool PlayerInputConfiguration::is_joystick(ALLEGRO_JOYSTICK *joystick)
+{
+   return this->joystick == joystick;
 }
 
 
