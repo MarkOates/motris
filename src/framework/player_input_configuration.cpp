@@ -52,13 +52,7 @@ player_input_command_t PlayerInputConfiguration::get_joystick_mapping(int joysti
 }
 
 
-bool PlayerInputConfiguration::get_use_joystick_axes_for_arrow_commands()
-{
-   return use_joystick_axes_for_arrow_commands;
-}
-
-
-bool PlayerInputConfiguration::uses_joystick(ALLEGRO_JOYSTICK *joystick)
+bool PlayerInputConfiguration::is_joystick(ALLEGRO_JOYSTICK *joystick)
 {
    if (this->joystick == nullptr) return false;
    return this->joystick == joystick;

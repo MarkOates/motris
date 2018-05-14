@@ -15,8 +15,6 @@ public:
    FigureFactory();
    ~FigureFactory();
 
-   Figure make_empty_shape();
-
    Figure make_I_shape();
    Figure make_Z_shape();
    Figure make_S_shape();

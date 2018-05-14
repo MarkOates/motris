@@ -25,12 +25,6 @@ Figure FigureFactory::construct_figure(std::vector<int> positions, int color, Fi
 }
 
 
-Figure FigureFactory::make_empty_shape()
-{
-   return construct_figure({}, 1, Figure::FIGURE_SHAPE_I);
-}
-
-
 Figure FigureFactory::make_I_shape()
 {
    return construct_figure({1, 3, 5, 7}, 1, Figure::FIGURE_SHAPE_I);

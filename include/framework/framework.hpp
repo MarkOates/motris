@@ -27,7 +27,6 @@ private:
 
 public:
    Framework();
-   ~Framework();
 
    void add_screen(Screen *screen);
    void loop();
