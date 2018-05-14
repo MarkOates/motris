@@ -24,8 +24,9 @@ public:
    ALLEGRO_JOYSTICK *get_joystick();
    player_input_command_t get_keyboard_mapping(int al_keycode);
    player_input_command_t get_joystick_mapping(int joystick_button_num);
+   bool get_use_joystick_axes_for_arrow_commands();
 
-   bool is_joystick(ALLEGRO_JOYSTICK *joystick);
+   bool uses_joystick(ALLEGRO_JOYSTICK *joystick);
    bool is_usiing_joystick_axes_for_arrow_commands();
 
    void setup_default_keyboard_mapping_for_ARROW_KEYS();
