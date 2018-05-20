@@ -99,7 +99,10 @@ void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_b
    case PLAYER_INPUT_COMMAND_BACK:
    case PLAYER_INPUT_COMMAND_A:
    case PLAYER_INPUT_COMMAND_B:
-   case PLAYER_INPUT_COMMAND_C:
+   case PLAYER_INPUT_COMMAND_X:
+   case PLAYER_INPUT_COMMAND_Y:
+   case PLAYER_INPUT_COMMAND_L:
+   case PLAYER_INPUT_COMMAND_R:
       break;
    };
 }

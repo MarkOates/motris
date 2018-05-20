@@ -78,20 +78,25 @@ void PlayerInputConfiguration::setup_default_keyboard_mapping_for_ARROW_KEYS()
    keyboard_mappings[ALLEGRO_KEY_BACKSPACE] = PLAYER_INPUT_COMMAND_BACK;
    keyboard_mappings[ALLEGRO_KEY_Z] = PLAYER_INPUT_COMMAND_A;
    keyboard_mappings[ALLEGRO_KEY_SPACE] = PLAYER_INPUT_COMMAND_B;
-   keyboard_mappings[ALLEGRO_KEY_X] = PLAYER_INPUT_COMMAND_C;
+   keyboard_mappings[ALLEGRO_KEY_X] = PLAYER_INPUT_COMMAND_X;
 }
 
 
-void PlayerInputConfiguration::setup_default_joystick_mapping_for_XBOX_360_CONTROLLER()
+void PlayerInputConfiguration::setup_default_joystick_mapping_for_XBOX_360_WIRELESS_CONTROLLER()
 {
    joystick_mappings.clear();
 
    // see http://html5gamepad.com/ to test mappings (however the numberings are not consistent)
 
-   joystick_mappings[0] = PLAYER_INPUT_COMMAND_DOWN;
-   joystick_mappings[1] = PLAYER_INPUT_COMMAND_RIGHT;
-   joystick_mappings[3] = PLAYER_INPUT_COMMAND_LEFT;
-   joystick_mappings[4] = PLAYER_INPUT_COMMAND_UP;
+   joystick_mappings[0] = PLAYER_INPUT_COMMAND_B;
+   joystick_mappings[1] = PLAYER_INPUT_COMMAND_A;
+   joystick_mappings[3] = PLAYER_INPUT_COMMAND_Y;
+   joystick_mappings[4] = PLAYER_INPUT_COMMAND_X;
+   joystick_mappings[7] = PLAYER_INPUT_COMMAND_R;
+   joystick_mappings[6] = PLAYER_INPUT_COMMAND_L;
+
+   joystick_mappings[11] = PLAYER_INPUT_COMMAND_START;
+   //joystick_mappings[??] = PLAYER_INPUT_COMMAND_BACK;
 }
 
 

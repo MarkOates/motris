@@ -29,7 +29,7 @@ public:
    bool is_usiing_joystick_axes_for_arrow_commands();
 
    void setup_default_keyboard_mapping_for_ARROW_KEYS();
-   void setup_default_joystick_mapping_for_XBOX_360_CONTROLLER();
+   void setup_default_joystick_mapping_for_XBOX_360_WIRELESS_CONTROLLER();
 };
 
 
