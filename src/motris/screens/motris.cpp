@@ -29,13 +29,13 @@ void Motris::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {
-   case GAME_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN:
+   case SYSTEM_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN:
       {
          float x=1792/2; float y=1008/2; float scale=1.0;
          framework.add_screen(new PlayerGameplayGameboard(player_1, x, y, scale));
       }
       break;
-   case GAME_EVENT_GOTO_MULTIPLAYER_GAMEPLAY_SCREEN:
+   case SYSTEM_EVENT_GOTO_MULTIPLAYER_GAMEPLAY_SCREEN:
       {
          float x=1792/2; float y=1008/2; float scale=0.8;
          framework.add_screen(new PlayerGameplayGameboard(player_1, x-600, y, scale));
