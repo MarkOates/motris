@@ -29,6 +29,7 @@ public:
    Framework();
 
    void add_screen(Screen *screen);
+   void delete_all_screens();
    void loop();
 };
 

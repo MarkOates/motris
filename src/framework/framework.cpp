@@ -53,6 +53,18 @@ void Framework::add_screen(Screen *screen)
 }
 
 
+void Framework::delete_all_screens()
+{
+   for (auto &screen : screens)
+   {
+      // log should go here
+      delete screen;
+   }
+
+   screens.clear();
+}
+
+
 void Framework::loop()
 {
    ALLEGRO_EVENT event;
