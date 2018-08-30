@@ -3,6 +3,7 @@
 #include <motris/main_menu_screen/renderers/menu_item_renderer.hpp>
 
 #include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
 
 
 namespace MainMenu
@@ -17,6 +18,9 @@ MenuItemRenderer::MenuItemRenderer(MenuItem *menu_item, ALLEGRO_FONT *font, floa
 {
    // validate menu_item
    // validate font
+
+   if (!menu_item) throw std::runtime_error("Invalid menu_item in MenuItemRenderer");
+   if (!font) throw std::runtime_error("Invalid font in MenuItemRenderer");
 }
 
 
@@ -28,7 +32,24 @@ MenuItemRenderer::~MenuItemRenderer()
 void MenuItemRenderer::render()
 {
    place.start_transform();
-   al_draw_text(font, al_color_name("white"), 0, 0, ALLEGRO_ALIGN_CENTER, menu_item->get_text().c_str());
+   ALLEGRO_COLOR color;
+
+   switch(state)
+   {
+   case NONE:
+      color = al_color_name("gray");
+      break;
+   case NORMAL:
+      color = al_color_name("white");
+      break;
+   case SELECTED:
+      color = al_color_name("yellow");
+      break;
+   default:
+      break;
+   }
+
+   al_draw_text(font, color, 0, 0, ALLEGRO_ALIGN_CENTER, menu_item->get_text().c_str());
    place.restore_transform();
 }
 

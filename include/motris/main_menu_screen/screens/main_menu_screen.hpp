@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <framework/screen.hpp>
-#include <motris/main_menu_screen/models/menu_item.hpp>
+#include <motris/main_menu_screen/models/menu.hpp>
 
 
 namespace MainMenu
@@ -13,13 +13,15 @@ namespace MainMenu
    {
    private:
       int cursor_pos;
-      std::vector<MenuItem> menu_items;
+      Menu menu;
 
    public:
       MainMenuScreen();
       ~MainMenuScreen();
 
       void process_event(ALLEGRO_EVENT &event) override;
+      void update_scene();
+      void render_scene();
    };
 } // MainMenu
 

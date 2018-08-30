@@ -3,6 +3,7 @@
 #include <motris/screens/motris.hpp>
 
 #include <motris/screens/player_gameplay_gameboard.hpp>
+#include <motris/main_menu_screen/screens/main_menu_screen.hpp>
 #include <motris/events.hpp>
 
 
@@ -15,7 +16,7 @@ Motris::Motris(Framework &framework)
    , player_4("Player 4", 4)
 {
    framework.add_screen(&gamer_input_screen);
-   emit_event(GAME_EVENT_GOTO_MULTIPLAYER_GAMEPLAY_SCREEN);
+   emit_event(SYSTEM_EVENT_GOTO_MAIN_MENU_SCREEN);
 
    // player 1 is on keyboard
    gamer_input_screen.player_input_configurations[player_1.get_player_num()].setup_default_keyboard_mapping_for_ARROW_KEYS();
@@ -29,6 +30,12 @@ void Motris::process_event(ALLEGRO_EVENT &event)
 {
    switch(event.type)
    {
+   case SYSTEM_EVENT_GOTO_MAIN_MENU_SCREEN:
+      //framework.delete_all_screens();
+      {
+         framework.add_screen(new MainMenu::MainMenuScreen);
+      }
+      break;
    case SYSTEM_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN:
       {
          float x=1792/2; float y=1008/2; float scale=1.0;
