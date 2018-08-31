@@ -53,6 +53,13 @@ void Menu::move_cursor_down()
 }
 
 
+MenuItem *Menu::get_current_menu_item()
+{
+   if (menu_items.empty()) return nullptr;
+   return &menu_items[cursor_pos];
+}
+
+
 } // namespace
 
 

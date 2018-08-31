@@ -23,6 +23,7 @@ namespace MainMenu
 
       void move_cursor_up();
       void move_cursor_down();
+      MenuItem *get_current_menu_item();
    };
 } // MainMenu
 
