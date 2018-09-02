@@ -1,0 +1,17 @@
+#pragma once
+
+
+namespace MainMenu
+{
+   enum event_t
+   {
+      MAIN_MENU_EVENT_NONE = 0,
+      MAIN_MENU_EVENT_MOVE_CURSOR_UP,
+      MAIN_MENU_EVENT_MOVE_CURSOR_DOWN,
+      MAIN_MENU_EVENT_SELECT_MENU_ITEM,
+      MAIN_MENU_EVENT_UPDATE_SCENE,
+      MAIN_MENU_EVENT_RENDER_SCENE,
+   };
+}
+
+
