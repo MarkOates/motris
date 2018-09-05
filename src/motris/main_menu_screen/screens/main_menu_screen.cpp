@@ -27,9 +27,9 @@ MainMenuScreen::~MainMenuScreen()
 }
 
 
-void MainMenuScreen::process_event(event_t &event)
+void MainMenuScreen::process_event(ALLEGRO_EVENT &event)
 {
-   switch(event)
+   switch(event.type)
    {
    case MAIN_MENU_EVENT_MOVE_CURSOR_UP:
       menu.move_cursor_up();
@@ -43,15 +43,15 @@ void MainMenuScreen::process_event(event_t &event)
          if (menu_item) emit_event(menu_item->get_event());
       }
       break;
-   case MAIN_MENU_EVENT_UPDATE_SCENE:
+   case ALLEGRO_EVENT_TIMER:
       update_scene();
-      break;
-   case MAIN_MENU_EVENT_RENDER_SCENE:
       render_scene();
+      std::cout << "event" << std::endl;
       break;
    case MAIN_MENU_EVENT_NONE:
-   deafult:
-      throw std::runtime_error("MainMenUScreen::process_event unexpected event_t");
+   //deafult:
+      //throw std::runtime_error("MainMenUScreen::process_event unexpected ALLEGRO_EVENT_TYPE");
+      break;
    }
 }
 
@@ -61,8 +61,13 @@ void MainMenuScreen::update_scene()
 }
 
 
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+
+
 void MainMenuScreen::render_scene()
 {
+   al_draw_filled_rectangle(0, 0, 200, 200, al_color_name("orange"));
    MenuRenderer menu_renderer(&menu, 600, 300);
    menu_renderer.render();
 }

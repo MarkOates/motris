@@ -49,6 +49,8 @@ void MenuItemRenderer::render()
       break;
    }
 
+   al_draw_filled_rectangle(0, 0, 800, 800, al_color_name("green"));
+
    al_draw_text(font, color, 0, 0, ALLEGRO_ALIGN_CENTER, menu_item->get_text().c_str());
    place.restore_transform();
 }

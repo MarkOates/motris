@@ -7,6 +7,7 @@
 
 PlayerInputConfiguration::PlayerInputConfiguration()
    : joystick(nullptr)
+   , use_joystick_axes_for_arrow_commands(true)
    , joystick_mappings()
    , keyboard_mappings()
 {

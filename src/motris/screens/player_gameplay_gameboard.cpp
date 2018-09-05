@@ -14,8 +14,8 @@ PlayerGameplayGameboard::PlayerGameplayGameboard(Player &player, float x, float 
    : Screen()
    , player(player)
    , placement(x, y, 0, 0, 0, scale, scale, 0.5, 0.5, 0, 0)
-   , gameplay_hud(new GameplayHUD)
-   //, gameplay_hud(new GameplayHUDNarrow(player.get_name()))
+   //, gameplay_hud(new GameplayHUD)
+   , gameplay_hud(new GameplayHUDNarrow(player.get_name()))
    , piece_tiles_sprite_sheet(al_load_bitmap("data/bitmaps/piece_tiles.png"), 16, 16)
    , figure_factory()
    , field(10, 20)
@@ -84,7 +84,6 @@ void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_b
    switch(gamer_input_screen_button_type)
    {
    case PLAYER_INPUT_COMMAND_UP:
-      emit_event(GAME_EVENT_ROTATE_FIGURE, player.get_id());
       break;
    case PLAYER_INPUT_COMMAND_LEFT:
       emit_event(GAME_EVENT_MOVE_FIGURE_LEFT, player.get_id());
@@ -95,14 +94,16 @@ void PlayerGameplayGameboard::process_button_down_input(int gamer_input_screen_b
    case PLAYER_INPUT_COMMAND_DOWN:
       emit_event(GAME_EVENT_ACCELERATE_DROP, player.get_id());
       break;
+   case PLAYER_INPUT_COMMAND_R:
+   case PLAYER_INPUT_COMMAND_B:
+      emit_event(GAME_EVENT_ROTATE_FIGURE, player.get_id());
+      break;
    case PLAYER_INPUT_COMMAND_START:
    case PLAYER_INPUT_COMMAND_BACK:
    case PLAYER_INPUT_COMMAND_A:
-   case PLAYER_INPUT_COMMAND_B:
    case PLAYER_INPUT_COMMAND_X:
    case PLAYER_INPUT_COMMAND_Y:
    case PLAYER_INPUT_COMMAND_L:
-   case PLAYER_INPUT_COMMAND_R:
       break;
    };
 }
