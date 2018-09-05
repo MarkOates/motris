@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <framework/screen.hpp>
-#include <framework/event.hpp>
 #include <motris/main_menu_screen/models/menu.hpp>
 #include <motris/main_menu_screen/events.hpp>
 
@@ -21,7 +20,7 @@ namespace MainMenu
       MainMenuScreen();
       ~MainMenuScreen();
 
-      void process_event(ALLEGRO_EVENT &event);
+      void process_event(event_t &event);
       void update_scene();
       void render_scene();
    };

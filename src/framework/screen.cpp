@@ -1,7 +1,6 @@
 
 
 #include <framework/framework.hpp>
-#include <framework/event.hpp>
 
 
 Screen::Screen()

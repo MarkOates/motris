@@ -26,6 +26,8 @@ MenuRenderer::~MenuRenderer()
 
 void MenuRenderer::render()
 {
+   place.start_transform();
+
    int cursor_y = 0;
    int cursor_distance_y = 140;
 

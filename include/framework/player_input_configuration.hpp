@@ -15,7 +15,6 @@ private:
    std::map<int, player_input_command_t> keyboard_mappings;
 
 public:
-   float direction_values[4] = {0.0f};
    PlayerInputConfiguration();
    ~PlayerInputConfiguration();
 

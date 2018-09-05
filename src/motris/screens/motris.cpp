@@ -10,21 +10,19 @@
 Motris::Motris(Framework &framework)
    : framework(framework)
    , gamer_input_screen()
-   , player_1("Player 1", 0)
-   , player_2("Player 2", 1)
-   , player_3("Player 3", 2)
-   , player_4("Player 4", 3)
+   , player_1("Player 1", 1)
+   , player_2("Player 2", 2)
+   , player_3("Player 3", 3)
+   , player_4("Player 4", 4)
 {
    framework.add_screen(&gamer_input_screen);
    emit_event(SYSTEM_EVENT_GOTO_MAIN_MENU_SCREEN);
 
    // player 1 is on keyboard
-   //gamer_input_screen.player_input_configurations[player_1.get_player_num()].set_joystick(al_get_joystick(0));
-   //gamer_input_screen.player_input_configurations[player_1.get_player_num()].setup_default_joystick_mapping_for_XBOX_360_WIRELESS_CONTROLLER();
    gamer_input_screen.player_input_configurations[player_1.get_player_num()].setup_default_keyboard_mapping_for_ARROW_KEYS();
 
    // player 2 is on joystick
-   //gamer_input_screen.player_input_configurations[player_2.get_player_num()].setup_default_joystick_mapping_for_XBOX_360_WIRELESS_CONTROLLER();
+   gamer_input_screen.player_input_configurations[player_2.get_player_num()].setup_default_joystick_mapping_for_XBOX_360_WIRELESS_CONTROLLER();
 }
 
 

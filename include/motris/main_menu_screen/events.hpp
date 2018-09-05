@@ -5,7 +5,7 @@ namespace MainMenu
 {
    enum event_t
    {
-      MAIN_MENU_EVENT_NONE = ALLEGRO_GET_EVENT_TYPE('M','a','M','u'),
+      MAIN_MENU_EVENT_NONE = 0,
       MAIN_MENU_EVENT_MOVE_CURSOR_UP,
       MAIN_MENU_EVENT_MOVE_CURSOR_DOWN,
       MAIN_MENU_EVENT_SELECT_MENU_ITEM,

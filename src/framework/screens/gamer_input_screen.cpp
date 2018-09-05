@@ -63,53 +63,6 @@ void GamerInputScreen::key_up_func(ALLEGRO_EVENT &event)
 
 void GamerInputScreen::joy_axis_func(ALLEGRO_EVENT &event)
 {
-   //std::cout << "=========================================" << player_input_configurations.size() << std::endl;
-   //std::cout << " num configurations: " << player_input_configurations.size() << std::endl;
-   for (auto &player_input_configuration : player_input_configurations)
-   {
-      if (!player_input_configuration.second.is_joystick(event.joystick.id)) continue;
-      //if (!player_input_configuration.second.is_usiing_joystick_axes_for_arrow_commands()) continue;
-
-      //player_input_command_t command = player_input_configuration.second.get_joystick_mapping(event.joystick.button);
-      //if (command != PLAYER_INPUT_COMMAND_UNDEF) emit_gamer_command_up(player_input_configuration.first, command);
-
-      PlayerInputConfiguration &config = player_input_configuration.second;
-      switch(event.joystick.stick)
-      {
-      case 0:
-         if (event.joystick.axis == 0)
-         {
-            std::cout << "aaastick 2" << std::endl;
-            std::cout << "   axis: " << event.joystick.pos << std::endl;
-
-            float previous_axis_value = config.direction_values[0];
-            float new_axis_value = event.joystick.pos;
-            config.direction_values[0] = new_axis_value;
-
-
-            std::cout << " prev: " << previous_axis_value << "  now: " << new_axis_value << std::endl;
-            float threshold = 0.3;
-
-            if (previous_axis_value < threshold && new_axis_value >= threshold) emit_gamer_command_down(player_input_configuration.first, PLAYER_INPUT_COMMAND_RIGHT);
-            if (previous_axis_value >= threshold && new_axis_value < threshold) emit_gamer_command_up(player_input_configuration.first, PLAYER_INPUT_COMMAND_RIGHT);
-            if (previous_axis_value > -threshold && new_axis_value <= -threshold) emit_gamer_command_down(player_input_configuration.first, PLAYER_INPUT_COMMAND_LEFT);
-            if (previous_axis_value <= -threshold && new_axis_value > -threshold) emit_gamer_command_up(player_input_configuration.first, PLAYER_INPUT_COMMAND_LEFT);
-         }
-         break;
-      case 1:
-         break;
-      case 2:
-         break;
-      default:
-         break; 
-      }
-
-      //threshold
-
-      //ALLEGROJO
-      //if 
-      //case ALLEG
-   }
 }
 
 
@@ -117,7 +70,6 @@ void GamerInputScreen::joy_button_down_func(ALLEGRO_EVENT &event)
 {
    for (auto &player_input_configuration : player_input_configurations)
    {
-      if (!player_input_configuration.second.is_joystick(event.joystick.id)) continue;
       player_input_command_t command = player_input_configuration.second.get_joystick_mapping(event.joystick.button);
       if (command != PLAYER_INPUT_COMMAND_UNDEF) emit_gamer_command_down(player_input_configuration.first, command);
    }
@@ -128,7 +80,6 @@ void GamerInputScreen::joy_button_up_func(ALLEGRO_EVENT &event)
 {
    for (auto &player_input_configuration : player_input_configurations)
    {
-      if (!player_input_configuration.second.is_joystick(event.joystick.id)) continue;
       player_input_command_t command = player_input_configuration.second.get_joystick_mapping(event.joystick.button);
       if (command != PLAYER_INPUT_COMMAND_UNDEF) emit_gamer_command_up(player_input_configuration.first, command);
    }
