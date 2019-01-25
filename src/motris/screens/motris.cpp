@@ -16,7 +16,7 @@ Motris::Motris(Framework &framework)
    , player_4("Player 4", 4)
 {
    framework.add_screen(&gamer_input_screen);
-   emit_event(SYSTEM_EVENT_GOTO_MAIN_MENU_SCREEN);
+   emit_event(SYSTEM_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN);
 
    // player 1 is on keyboard
    gamer_input_screen.player_input_configurations[player_1.get_player_num()].setup_default_keyboard_mapping_for_ARROW_KEYS();
