@@ -49,6 +49,7 @@ bool Field::can_place_figure(const Figure &figure) const
       if (point.x < 0) return false;
       if (point.x >= width) return false;
       if (point.y >= height) return false;
+      if (point.y < 0) continue;
 
       if (get_tile(point.x, point.y) != EMPTY_TILE) return false;
    }
