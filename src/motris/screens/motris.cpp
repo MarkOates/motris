@@ -10,11 +10,13 @@
 Motris::Motris(Framework &framework)
    : framework(framework)
    , gamer_input_screen()
+   //, decorated_cout('A', DecoratedCout::CONSOLE_RED, true)
    , player_1("Player 1", 1)
    , player_2("Player 2", 2)
    , player_3("Player 3", 3)
    , player_4("Player 4", 4)
 {
+   //decorated_cout << "Hello world!";
    framework.add_screen(&gamer_input_screen);
    emit_event(SYSTEM_EVENT_GOTO_SINGLE_PLAYER_GAMEPLAY_SCREEN);
 
