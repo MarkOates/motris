@@ -15,6 +15,7 @@ allegro.log
 bin/*
 obj/*
 !bin/data
+!bin/data/**
 
 
 
